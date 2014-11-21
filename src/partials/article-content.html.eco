@@ -114,6 +114,21 @@
 		</div>
 	<% end %>
 
-	<%- @getDisqus() %>
+		<div id="disqus_thread"></div>
+			<script>
+				(function(){
+
+					window.disqus_shortname = 'myplanetsite';
+					window.disqus_developer = '1';
+					window.disqus_url = window.location.href;
+					window.disqus_identifier = '<%- @document.slug %>';
+					window.disqus_title = '<%- @document.title %>';
+
+					var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+					dsq.src = 'http://myplanetsite.disqus.com/embed.js';
+					(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+				}());
+			</script>
+		</div>
 
 </div>
