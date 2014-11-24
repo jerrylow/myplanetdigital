@@ -1,0 +1,3 @@
+[submodule "myplanetdigital-content"]
+	path = myplanetdigital-content
+	url = https://github.com/myplanetdigital/myplanetdigital-content.git
