@@ -123,17 +123,20 @@
 		<% if @getEnvironment() != 'development': %>
 		<%- @getBlock('scripts').toHTML() %>
 		<script>
-			(function (tos) {
-			  window.setInterval(function () {
-			    tos = (function (t) {
-			      return t[0] == 50 ? (parseInt(t[1]) + 1) + ':00' : (t[1] || '0') + ':' + (parseInt(t[0]) + 10);
-			    })(tos.split(':').reverse());
-			    ga('send', 'event', 'Time', 'Log', tos, {'nonInteraction': true});
-			  }, 10000);
-			})('00');
+			(function () {
+				var time = 0,
+					interval = 10;
+				function tick () {
+					time += interval;
+					var s = time % 60,
+					m = Math.floor((time / 60) % 60),
+					h = Math.floor(time / (60 * 60) % 24);
+					ga('send', 'event', 'Time', 'Log', (h ? h + ':' : '') +  (m < 10 ? '0' + m : m) + ':' + (s < 10 ? '0' + s : s), {'nonInteraction': true});
+					window.setTimeout(tick, (interval = time < 30 ? 10 : (time < 240 ? 30 : 60)) * 1000);
+				}
+				window.setTimeout(tick, interval * 1000);
+			}());
 		</script>
 		<% end %>
-
-
 	</body>
 </html>
