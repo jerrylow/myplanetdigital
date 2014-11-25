@@ -30,6 +30,9 @@ src/build.sh
 # myplanetdigital-content repo.
 src/documents/index.html.md
 src/documents/tags*
+src/documents/article
+src/files/associated-files
+src/files/images
 
 # Ignore all Privacy page related content and layout files
 # as they are version controlled by the myplanetdigital-content repo.
