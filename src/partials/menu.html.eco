@@ -19,6 +19,9 @@
 				<% liClass = item.meta.class if item.meta.class? %>
 				<% endSlash = if item.slug == 'contact' || item.slug == '' then '' else '/' %>
 				<li class="<%= liClass %><%= if liClass == active then ' active' %>">
+					<% if item.slug == 'careers' : %>
+						<a href="http://glassdoor.myplanet.io" target="_blank"><span>Careers</span></a>
+					<% else: %>
 					<a  <%= if item.slug == 'contact' then 'data-attr=contact-link' %>
 						href="<%= if item.meta.link? then item.meta.link else @getUrl(item.url) %><%= endSlash %>"
 						<% if item.meta.banner?: %>
@@ -35,6 +38,7 @@
 						<div class="menu-doodle"></div>
 						<!-- <![endif]-->
 					</a>
+					<% end %>
 				</li>
 			<% end %>
 		<% end %>
