@@ -1,4 +1,4 @@
-# Myplanet.io   
+# Myplanet.com   
 
 This badge may not represent reality because docpad cli tools don't return with correct exit codes on errors therefore the build does not break when it should.
 [![Build Status](https://travis-ci.org/myplanetdigital/myplanetdigital.svg?branch=develop)](https://travis-ci.org/myplanetdigital/myplanetdigital)
@@ -20,7 +20,7 @@ This downloads the external content, so be sure to be selective with your `git a
 
 ## Deploying to GitHub Pages (dev.myplanet.io)
 
-Any check into this branch or to the [seperate content repository](https://github.com/myplanetdigital/myplanetdigital-content) will trigger a build in [Travis](https://travis-ci.org/) which will then automagically be deployed to http://dev.myplanet.io
+Any check into this branch or to the [seperate content repository](https://github.com/myplanetdigital/myplanetdigital-content) will trigger a build in [Travis](https://travis-ci.org/) which will then automagically be deployed to http://dev.myplanet.com
 
 ## License 
 
