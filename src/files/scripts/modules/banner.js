@@ -27,14 +27,19 @@
 
        //return window.requestAnimationFrame(function () {
           $banner.attr('class', tag);
-          return $bannerText.html(bannerText).css({'opacity': 1, 'transition' : 'none'});
+          $bannerText.html(bannerText).css({'opacity': 0.99, 'transition' : 'none'});
+          return window.setTimeout(function () {
+              $banner.css('transition','');
+              $bannerText.css('transition','');
+          }, 0);
         //});
       //});
     }
 
     window.setTimeout(function() {
       $banner.attr('class', tag);
-      $bannerText.html(bannerText).css({'opacity': 1, 'transition' : ''});
+      $banner.css('transition','');
+      $bannerText.html(bannerText).css({'opacity': 0.99, 'transition' : ''});
     }, 0);
   }
 

@@ -11,64 +11,93 @@
 		$wrap = $('#wrap'),
 		$menu = $('#menu'),
 		$banner = $('#banner'),
+		$bannerText = $banner.find('.banner-text'),
 		$menuGhost,
+		curTag,
 		$logo = $('#menu .home'),
 		$viewport = $('#viewport'),
-		$indicator = $('<span data-role="menu-indicator"></span>'),
+		MENU_COLOR = 'dark',
+		INDICATOR_COLOR = 'light',
+		menuShown = $menu.hasClass(MENU_COLOR),
+		$back = $('a[data-attr="back"]'),
+		$indicator = $('<span data-role="menu-indicator" class="' + ($menu.hasClass('light') ? 'dark' : '') + '"></span>'),
 		$active = $menu.find('.active'),
-		$mainWrap = $('.main-wrap'),
 		curScrollTop,
-		curMouseTop,
-		lastMouseMove = new Date(),
 		mobileMenuIsTransitioning = false,
-		indicatorOffset,
-		desktopMenuState,
-		desktopMenuOffset = 0,
-		mouseMoveDelta = 0,
-		scrollDelta = 0,
-		pageHasLoaded = false,
-		enteredMenu = false,
-		desktopMenuRafTimeout,
+		isHidden = false,
+		isLoaded = false,
+		isFirst = true,
+		SMALL_HEADER_HEIGHT = 87,
+		MENU_HEIGHT_OFFSET = 25,
+		scrollMenuOffset = menuShown ? -(SMALL_HEADER_HEIGHT / 2) : 0,
+		articleMenuOffset = MENU_HEIGHT_OFFSET,
 		HEADER_HEIGHT = 147,
-		INDICATOR_WIDTH = 10,
+		INDICATOR_WIDTH = 100,
 		LOGO_WIDTH = 75,
 		MENU_WIDTH = 250,
-		SCROLL_UP_THRESHOLD = 40,
-		MOUSE_MOVE_THRESHOLD = 50,
-		DESKTOP_MENU_BREAKPOINT =  $banner[0].offsetHeight - $menu.outerHeight(),
-		MOUSE_MOVE_THROTTLE_THRESHOLD = 25;
+		LI_PADDING = 25;
 
-	function setIndicator(item, transition) {
-		if ($(item).is('.home')) {
-			indicatorOffset = $logo[0].offsetLeft + LOGO_WIDTH / 2 - INDICATOR_WIDTH;
-		} else if(item) {
-			indicatorOffset = $(item).offset().left + item.offsetWidth / 2 - INDICATOR_WIDTH;
+	function updateOffsets() {
+		$menu.find('li').each(function(i, li) {
+			li._offset = $(li).offset();
+			li._width = $(li).width();
+		});
+	}
+	function setIndicator(item, transition, offset) {
+		var indicatorOffset,
+			indicatorScaleX,
+			indicatorRotation = 0,
+			indicatorOpacity,
+			isExpandedMenu,
+			$item;
+		if(!item) {
+			item = $menu.find('.active')[0];
 		}
+		if(!item._offset) {
+			updateOffsets();
+		}
+		if(($item = $(item)).hasClass('blog')) {
+			isExpandedMenu = $menu.hasClass(MENU_COLOR);
+			indicatorOffset = item._offset.left + LI_PADDING - 40;
+			indicatorRotation = -90;
+			indicatorScaleX = isExpandedMenu ? 0.61 : 0.66;
+			indicatorOpacity = 0.5;
+			offset = (offset || 0) + (isExpandedMenu ? 70 : 80);
+		} else if ($item.hasClass('home')) {
+			indicatorOffset = item._offset.left + LOGO_WIDTH;
+			indicatorOpacity = 0.4;
+			indicatorScaleX = 0.1;
+		} else  {
+			indicatorOffset = item._offset.left + LI_PADDING;
+			indicatorScaleX = (item._width - (LI_PADDING * 2)) / 100;
+			indicatorOpacity = 0.999;
+		}
+		// + item.offsetWidth / 2 - INDICATOR_WIDTH;
+	//window.requestAnimationFrame(function() {
 		$indicator.css({
-			transform: 'translate3d(' + indicatorOffset + 'px, ' + desktopMenuOffset + 'px, 0)',
+			transform: 'translate3d(' + Math.round(indicatorOffset) + 'px, ' + Math.ceil(scrollMenuOffset + articleMenuOffset + (offset || 0)) + 'px, 0) rotate(' + indicatorRotation + 'deg) scaleX(' + indicatorScaleX + ') scaleY(1.5)',
+			opacity: indicatorOpacity,
 			transition: transition || ''
 		});
+	//});
 	}
 
 	//active an item in the menu
 	function activateLink ($item) {
-		window.requestAnimationFrame(function () {
+				scrollMenuOffset = 0;
+				articleMenuOffset = 0;
+		//window.requestAnimationFrame(function () {
+
+			$menu.attr('data-active', curTag = $item.text().trim());
+			$active.removeClass('active');
+			$active = $item.addClass('active');
 			if(window.responsiveState !== 'mobile') {
+				handleScroll();
 				setIndicator($item[0]);
 			} else if(window.mobileMenuIsOpen) {
 				window.setTimeout(closeMenu, window.isIOS ? 50 : 0);
 			}
-			$active.removeClass('active');
-			$active = $item.addClass('active');
-			$menu.attr('data-active', $item.text());
-		});
-	}
-
-	function onPageLoad() {
-		//let the page load scroll event fire
-		window.setTimeout(function() {
-			pageHasLoaded = true;
-		}, 750);
+		//});
 	}
 
 	//setup the menu for desktop view
@@ -76,15 +105,13 @@
 		if(window.desktopCapable) {
 			curScrollTop = window.pageYOffset;
 			if(window.responsiveState !== 'mobile' && $active.length) {
+				updateOffsets();
 				window.requestAnimationFrame(function () {
-					return setIndicator($active[0]);
+					handleScroll();
+					//setIndicator($active[0], window.isTileView ? '' : 'none');
 				});
 			}
-            $window.smartresize(function(){
-                setIndicator($active[0])
-            });
 		}
-		onPageLoad();
 	}
 
 	function initMobileMenu() {
@@ -109,57 +136,57 @@
 		$window.on('resize', window.afterScrollFixOrientationChange);
 	}
 
-	function showLargeMenu() {
-		if(desktopMenuState !== 'large-menu') {
-			desktopMenuState = 'large-menu';
-			window.requestAnimationFrame(function () {
-				desktopMenuOffset = 0;
-				desktopMenuRafTimeout = null;
-				setIndicator();
-				$menu.css({
-					transform: '',
-					transition: ''
-				});
-			});
-		}
-	}
-
-	function getMenuTransitionTime() {
-		return window.responsiveState === 'mobile' ? 0.4 : 0.725;
-	}
-
-	function stickLargeMenu(top, returningToTileView) {
-		var doTransition,
-			transition;
+	function hideMenu(e, data, transition) {
+		var transitionTime, headerHeight;
 		if(window.responsiveState === 'mobile') {
 			return;
 		}
-		top = top || window.pageYOffset;
-		doTransition = returningToTileView || !window.isTileView || top > (HEADER_HEIGHT + DESKTOP_MENU_BREAKPOINT);
-		transition = 'transform ' + getMenuTransitionTime() + 's ease';
-		desktopMenuOffset = window.isTileView ? (returningToTileView ? 0 : -Math.min(top - DESKTOP_MENU_BREAKPOINT, HEADER_HEIGHT - 1)) : -HEADER_HEIGHT + 1;
-		desktopMenuState = 'sticky';
-		setIndicator(null, returningToTileView ? transition : (doTransition ? '' : 'none'));
-		$menu.css({
-			transform: 'translate3d(0,' + desktopMenuOffset + 'px, 0)',
-			transition: returningToTileView ? transition : (doTransition ? '' : 'none')
-		});
+		transition = transition || 'transform 0.725s ease';
+		headerHeight = menuShown ? (SMALL_HEADER_HEIGHT + 4) : HEADER_HEIGHT;
 
+		$menu.css({
+			transform: 'translate3d(0,' + (articleMenuOffset = -headerHeight) + 'px,0)',
+			transition: transition
+		});
+		if(MENU_COLOR === 'dark') {
+			$back.removeClass('light');
+		}
+		curScrollTop = data ? data.top : window.pageYOffset;
+		setIndicator(null, transition, e ? 0 : MENU_HEIGHT_OFFSET);
+		isHidden = true;
 	}
 
-	function hideLargeMenu(e, data) {
-		var transitionTime;
-		if(window.responsiveState === 'mobile' || desktopMenuState === 'hidden') {
+	function showMenu(beforeTileTransition, data, transition) {
+		if(window.responsiveState === 'mobile' || !isHidden) {
 			return;
 		}
-		transitionTime = getMenuTransitionTime();
+
+		transition = transition || 'transform 0.725s ease'
 		$menu.css({
-			transform: 'translate3d(0,' + (desktopMenuOffset = -HEADER_HEIGHT) + 'px,0)',
-			transition: 'transform ' + transitionTime + 's ease'
+			transform: 'translate3d(0,0,0)',
+			transition: transition
 		});
-		desktopMenuState = 'hidden';
-		curScrollTop = data ? data.top || window.pageYOffset : window.pageYOffset;
-		setIndicator(null, 'transform ' + transitionTime + 's ease');
+		if($menu.hasClass('dark')) {
+			$back.addClass('light');
+		}
+		curScrollTop = data ? data.top : window.pageYOffset;
+		articleMenuOffset = MENU_HEIGHT_OFFSET;
+		if(beforeTileTransition && !shouldShowMenu(curScrollTop)) {
+			$menu.removeClass(MENU_COLOR).addClass('no-transition');
+			articleMenuOffset = -SMALL_HEADER_HEIGHT;
+			scrollMenuOffset = 0;
+			setIndicator(null, 'none');
+			window.setTimeout(function () {
+				articleMenuOffset = 0;
+				setIndicator(null, transition);
+			}, 0);
+			window.setTimeout(function () {
+				$menu.removeClass('no-transition');
+			}, 425);
+		} else {
+			setIndicator(null, transition);
+		}
+		isHidden = false;
 	}
 
 	function closeMenu(immediate) {
@@ -204,30 +231,54 @@
 		}
 	}
 
-	function handleScroll (e, data) {
-		var top,
-			doTransition;
-		if(window.isBusy || window.isElevating || data.isFinalEvent || enteredMenu || window.responsiveState === 'mobile' ) {
+	function shouldShowMenu(top) {
+		return top >= (curTag === 'Home' ? 433 : 393);
+	}
+
+	function handleScroll (e, data, transition) {
+		var wasMenuShown;
+		if(data && (!isLoaded || window.isBusy || window.isElevating || data.isFinalEvent || window.responsiveState === 'mobile'))  {
 			return;
 		}
-		top = Math.max(data.top, 0);
-		if(!pageHasLoaded || (window.isTileView && (top <= curScrollTop || top <= DESKTOP_MENU_BREAKPOINT))) {
-			scrollDelta += curScrollTop - top;
-			if(scrollDelta > SCROLL_UP_THRESHOLD) {
-				showLargeMenu();
-				scrollDelta = 0;
-			}
-		} else if(-desktopMenuOffset < HEADER_HEIGHT) {
-			if(window.isTileView) {
-				stickLargeMenu(top);
-			} else {
-				hideLargeMenu();
-			}
-
-			scrollDelta = 0;
+		if(!window.isTileView) {
+			/*if(data && (data.top < curScrollTop)) {
+				showMenu(null, null, transition || 'transform 0.425s');
+			} else if(data && data.top > 0) {
+				hideMenu(null, null, transition || 'transform 0.425s');
+			}*/
+			isFirst  = false;
+			return curScrollTop = data ? data.top : window.pageYOffset;
 		}
-		curScrollTop = top;
-		mouseMoveDelta = 0;
+		articleMenuOffset = 0;
+
+		data = data || {top: window.pageYOffset};
+		wasMenuShown = menuShown;
+		if(menuShown = shouldShowMenu(data.top)) {
+			if(!wasMenuShown || isFirst) {
+				$menu.addClass(MENU_COLOR).addClass('delay').css('transition', transition || '');
+				$indicator.addClass(INDICATOR_COLOR);
+				scrollMenuOffset = -((SMALL_HEADER_HEIGHT / 2) - 27) - 2;
+				setIndicator(null, 'transform .4s ease .25s');
+			}
+		} else {
+			if(wasMenuShown || isFirst) {
+				$menu.removeClass(MENU_COLOR).removeClass('delay').css('transition', transition || '');
+				$indicator.removeClass(INDICATOR_COLOR);
+				scrollMenuOffset = 0;
+				if(!isHidden) {
+					setIndicator();
+				}
+			}
+			if(window.isTileView) {
+				$bannerText.css({
+					transform: 'translate3d(0,' + Math.round(-data.top / 3) + 'px, 0)',
+					opacity: Math.max(0.01, Math.min(0.999, 1 - (data.top/419))).toFixed(3),
+					transition: 'none'
+				});
+			}
+		}
+		isFirst = false;
+		curScrollTop = data.top;
 	}
 
 	//handle the mobile menu toggle button being pressed
@@ -263,57 +314,113 @@
 
 	//only attach desktop events if the device is capable of showing desktop
 	$window.on('deviceCapabilities', function (e, data) {
-
+		var t, initialT, removeHover;
 		if(data.desktopCapable) {
 			$window.on('pageScroll', handleScroll);
 			//$body.on('mousemove', handleMouseMove);
 			$wrap.append($indicator);
-			$menu.on('mouseenter mouseleave', 'li', function() {
-				$(this).toggleClass('hover');
-			});
-
-			$('#menu, #logo').on('mouseenter', function() {
-				enteredMenu = true;
-			});
-			$menuGhost.on('mouseenter', function() {
-				if (window.isTileView && window.curScrollTop <= DESKTOP_MENU_BREAKPOINT) {
+			$window.smartresize(function(){
+            	updateOffsets();
+                setIndicator($active[0]);
+            });
+			$menu.on('mouseleave', 'li', function() {
+				if(window.responsiveState === 'mobile') {
 					return;
 				}
-				if(!enteredMenu && desktopMenuState !== 'large-menu') {//} && (!window.isBusy || window.isTileView)) {
-					showLargeMenu();
-				} else if(enteredMenu) {
-					enteredMenu = false;
+				var $el = $(this);
+				if($el.hasClass('community') || $el.hasClass('design') || $el.hasClass('technology')) {
+					$menu.removeClass('community').removeClass('design').removeClass('technology');
+					$el = $el.siblings().filter('.blog');
+				}
+				if($el.hasClass('home')) {
+					$el.removeClass('hover');
+					return $el.addClass('no-delay').one('transitionend webkitTransitionEnd', function () {
+						$el.removeClass('no-delay');
+					});
+				}
+
+				t = window.setTimeout(removeHover = function () {
+					$el.removeClass('hover');
+					if($menu.hasClass('expanded')) {
+						$menu.removeClass('expanded').addClass('no-delay').one('transitionend webkitTransitionEnd', function () {
+							$menu.removeClass('no-delay');
+						});
+					}
+					setIndicator();
+					t = null;
+					removeHover = null;
+				}, 300);
+			});
+			$('#menu').on('mouseenter', 'li', function(e) {
+				if(window.responsiveState === 'mobile') {
+					return;
+				}
+				var $me = $(this);
+				if($me.hasClass('community') || $me.hasClass('design') || $me.hasClass('technology')) {
+					$menu.removeClass('community').removeClass('design').removeClass('technology').addClass($me[0].className);
+					return window.clearTimeout(t);
+				}
+				$me.addClass('hover');
+				if(t) {
+					window.clearTimeout(t);
+					t = null;
+					$me.siblings().removeClass('hover');
+					if($menu.hasClass('expanded')) {
+						$menu.removeClass('expanded').addClass('no-delay').one('transitionend webkitTransitionEnd', function () {
+							$menu.removeClass('no-delay');
+						});
+					}
+				}
+				if($me.hasClass('blog') && $menu.hasClass(MENU_COLOR)) {
+					$menu.addClass('expanded');
+				}
+				setIndicator(this);
+			});
+			$([$menu[0], $back[0]]).on('mouseenter', function(e) {
+				if(window.responsiveState === 'mobile') {
+					return;
+				}
+				if(!window.isTileView) {
+					showMenu(null, null, 'transform 0.4s');
+				}
+				if(e.target === $back[0]) {
+					$(e.target).closest('#back').addClass('hover');
+				}
+				window.clearTimeout(initialT);
+			}).on('mouseleave', function(e) {
+				if(window.responsiveState === 'mobile') {
+					return;
+				}
+				if(!window.isTileView && e.clientY > 0 && e.relatedTarget !== $back[0]) {
+					hideMenu(null, null, 'transform 0.4s');
+					$menu.removeClass('expanded');
+					if(removeHover) {
+						removeHover();
+					}
+				}
+				if(e.target === $back[0]) {
+					$(e.target).closest('#back').removeClass('hover');
 				}
 			});
-			$menuGhost.on('mouseleave', function(e) {
-				window.setTimeout(function() {
-					if (window.isTileView && window.curScrollTop <= DESKTOP_MENU_BREAKPOINT) {
-						return;
-					}
-					if(!enteredMenu && desktopMenuState === 'large-menu' && e.clientY > HEADER_HEIGHT && !window.isBusy) {
-						hideLargeMenu();
-					}
-				}, 0);
-				enteredMenu = false;
-			});
+			window.setTimeout(function () {
+				isLoaded = true;
+				if(!window.isTileView) {
+					initialT = window.setTimeout(hideMenu, 750);
+				}
+			}, 500);
 
-			if(!window.isTileView) {
-				window.setTimeout(function () {
-					window.requestAnimationFrame(hideLargeMenu);
-				}, 200);
-			}
-			$(initDesktopMenu);
+			$(window).on('load', initDesktopMenu);
 		} else if (data.hasTouchEvents) {
 			$(initMobileMenu);
 		}
+
 		if($active.length) {
-			$menu.attr('data-active', $active.text());
+			$menu.attr('data-active', curTag = $active.text().trim());
 		}
 	});
 
 	//$wrap.append($menuGhost);
-	$('#menu').wrap('<div data-role="menu-ghost" class="menu-ghost"></div>');
-	$menuGhost = $('.menu-ghost');
+	$wrap.append($menuGhost = $('<div data-role="menu-ghost" class="menu-ghost"></div>'));
 
 	$menuGhost.on('click', function(e) {
 		if(window.responsiveState === 'mobile' && this === e.target) {
@@ -326,10 +433,18 @@
 		window.requestAnimationFrame(function() {
 			if(data.oldState === 'mobile') {
 				initDesktopMenu();
-				showLargeMenu();
+				if(window.isTileView) {
+					handleScroll();
+				} else {
+					$menu.addClass(MENU_COLOR);
+					hideMenu();
+				}
 			} else {
-				pageHasLoaded = false;
-				onPageLoad();
+				$bannerText.css({
+					transform: '',
+					opacity: '',
+					transition: ''
+				});
 				$menu.css({
 					transform:'',
 					transition: ''
@@ -338,18 +453,17 @@
 		});
 	});
 	window.mobileMenuIsOpen = false;
-	$window.on('page-change', function (e, data) {
-	//	if(mobileMenuIsOpen) {
-	//		closeMenu();
-	//	}
-		enteredMenu = false;
-		mouseMoveDelta = 0;
-		scrollDelta = 0;
-	});
 
 	$window.on('same-page same-filter elevator-done',  function () {
-		//mobileMenuYOffset = window.curScrollTop;
-		closeMenu();
+		if(window.responsiveState === 'mobile') {
+			closeMenu();
+		}
+	});
+
+	$window.on('same-filter', function () {
+		if(window.responsiveState !== 'mobile') {
+			handleScroll(null, null, 'transform 0.725s ease');
+		}
 	});
 
 	$window.on('filter',function (e, tag) {
@@ -359,16 +473,23 @@
 		activateLink($menu.find('li.' + tag));
 	});
 
-	$window.on('article-transition', hideLargeMenu);
-
-	$window.on('tiles-transition', function(e, data) {
-		if(window.responsiveState !== 'mobile' && (curScrollTop = data.top) <= HEADER_HEIGHT) {
-			stickLargeMenu(curScrollTop, true);
+	$window.on('article-transition-done', function () {
+		if(window.responsiveState !== 'mobile') {
+			menuShown = true;
+			$menu.addClass(MENU_COLOR).addClass('no-transition');
+			$indicator.addClass(INDICATOR_COLOR);
+			scrollMenuOffset = -SMALL_HEADER_HEIGHT / 2;
+			hideMenu(null, null);
+			window.setTimeout(function () {
+				$menu.removeClass('no-transition');
+				$back.removeClass('no-transition');
+			}, 0);
 		}
 	});
-	$(document).one('mousemove', function(e) {
-		if (e.clientY <= HEADER_HEIGHT) {
-			enteredMenu = true;
-		}
+
+
+	$window.on('article-transition', hideMenu);
+	$window.on('tiles-transition', function (e) {
+		showMenu(true);
 	});
 }());

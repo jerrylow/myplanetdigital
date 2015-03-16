@@ -1,10 +1,10 @@
 (function tiles () {
 
 	'use strict';
-
 	if (! window.isSinglePageApp) {
 		return;
 	}
+
 	var $window = $(window),
 		$wrap = $('#main .main-wrap'),
 		$menu = $('#menu'),
@@ -26,7 +26,7 @@
 		}
 
 		$hiddenTiles = window.tiles.items.filter(function (tile) {
-			if(!IS_CHROME || window.isWebkitMobileNotIOS || (tile.position.y + topOffset < (window.pageYOffset + window.pageHeight))) {
+			if(true || !IS_CHROME || window.isWebkitMobileNotIOS || (tile.position.y + topOffset < (window.pageYOffset + window.pageHeight))) {
 				tile.element.style.opacity = '1';
 				$(tile.element).addClass('revealed');
 				return false;
@@ -174,10 +174,10 @@
 	//only attach events if the device is capable of showing desktop
 	$window.on('deviceCapabilities', function (e, data) {
 		if(data.desktopCapable || !data.hasTouchEvents) {
-			$window.on('pageScroll', handleScroll);
-			$window.on('after-scrolling', window.requestAnimationFrame.bind(null, removeLayers));
-			$wrap.on('transitionend webkitTransitionEnd', transitionEnd);
-			$window.on('article menu', removeAllLayers);
+			//$window.on('pageScroll', handleScroll);
+			//$window.on('after-scrolling', window.requestAnimationFrame.bind(null, removeLayers));
+			//$wrap.on('transitionend webkitTransitionEnd', transitionEnd);
+			//$window.on('article menu', removeAllLayers);
 			scrollData = data;
 		}
 
@@ -190,6 +190,7 @@
 			if(window.responsiveState === 'mobile' && window.mobileMenuIsOpen) {
 				return window.scroll(0, window.curScrollTop = 0);
 			}
+			immediate = true;
 			//window.requestAnimationFrame(function () {
 				window.tiles.items.map(function (tile) {
 					var $tile = $(tile.element).removeClass('reveal revealed show hidden').css({
@@ -201,20 +202,20 @@
 					}
 				});
 				if(toAnimate.length) {
-					window.requestAnimationFrame(function () {
+					window.setTimeout(function () {
 						window.scroll(0, window.curScrollTop = 0);
-						window.setTimeout(function () {
-							window.requestAnimationFrame(function () {
-								var len = toAnimate.length;
-								while(len--) {
-									toAnimate[len].css({
-										opacity: toAnimate[len][0].style.display === 'none' ? '1' : '0.99',
-										transition: ''
-									});
-								}
-							});
-						}, 0);
-					});
+						//window.setTimeout(function () {
+						window.requestAnimationFrame(function () {
+							var len = toAnimate.length;
+							while(len--) {
+								toAnimate[len].css({
+									opacity: toAnimate[len][0].style.display === 'none' ? '1' : '1',
+									transition: ''
+								});
+							}
+						});
+						//}, 0);
+					}, 0);
 				} else if(!window.isIOS) {
 					window.scroll(0, window.curScrollTop = 0);
 				}

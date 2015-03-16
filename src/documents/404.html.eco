@@ -32,7 +32,7 @@ additionalLayouts: ['content']
 	margin: 0 0 10px 0;
 }
 .article-404-text h2 a {
-	color: #f05a28;
+	color: #ed5b33;
 	text-decoration: none;
 	font-size: 1.5em;
 	font-family: Plantin;

@@ -114,21 +114,33 @@
 		</div>
 	<% end %>
 
-		<div id="disqus_thread">
-			<script>
-				(function(){
-
+	<div id="disqus_thread">
+		<script>
+			window.onArticleLoad = function () {
+				window.setTimeout(function(){
+					if(window.isTileView) {
+						return;
+					}
+					if(window.DISQUS) {
+						return DISQUS.reset({
+						  reload: true,
+						  config: function () {
+						    this.page.identifier = '<%- @document.slug %>';
+						    this.page.url = window.location.href;
+						  }
+						});
+					}
 					window.disqus_shortname = 'myplanetsite';
 					window.disqus_developer = '1';
 					window.disqus_url = window.location.href;
-					window.disqus_identifier = '<%- @document.slug %>';
-					window.disqus_title = '<%- @document.title %>';
+					window.disqus_identifier = "<%- @document.slug %>";
+					window.disqus_title = "<%- @document.title %>";
 
 					var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
 					dsq.src = 'http://myplanetsite.disqus.com/embed.js';
 					(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-				}());
-			</script>
-		</div>
-
+				}, 2750);
+			};
+		</script>
+	</div>
 </div>

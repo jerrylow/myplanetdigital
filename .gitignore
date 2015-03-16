@@ -18,6 +18,11 @@ out/
 # Bower dependencies
 src/raw/vendor
 
+# Dev
+src/documents/article
+src/files/associated-files
+src/files/images
+
 # =====================================
 # Ignore select content from the external repository.
 # =====================================
