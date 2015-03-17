@@ -18,7 +18,7 @@ This badge may not represent reality because docpad cli tools don't return with 
 
 This downloads the external content, so be sure to be selective with your `git add`-ing.
 
-## Deploying to GitHub Pages (dev.myplanet.io)
+## Deploying to GitHub Pages (dev.myplanet.com)
 
 Any check into this branch or to the [seperate content repository](https://github.com/myplanetdigital/myplanetdigital-content) will trigger a build in [Travis](https://travis-ci.org/) which will then automagically be deployed to http://dev.myplanet.com
 
