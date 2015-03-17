@@ -125,7 +125,7 @@
 						return DISQUS.reset({
 						  reload: true,
 						  config: function () {
-						    this.page.identifier = '<%- @document.slug %>';
+						    this.page.identifier = '<%= @document.slug %>';
 						    this.page.url = window.location.href;
 						  }
 						});
@@ -133,8 +133,8 @@
 					window.disqus_shortname = 'myplanetsite';
 					window.disqus_developer = '1';
 					window.disqus_url = window.location.href;
-					window.disqus_identifier = "<%- @document.slug %>";
-					window.disqus_title = "<%- @document.title %>";
+					window.disqus_identifier = "<%= @document.slug %>";
+					window.disqus_title = "<= @document.title %>";
 
 					var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
 					dsq.src = '//myplanetsite.disqus.com/embed.js';
