@@ -9,25 +9,15 @@
 
 #main {
 	.landing-content {
-		background: #F05A28;
-
-
-
-		.slides {
-		  .translateZ();
-		}
-
-		.flexslider {
-			height:100%;
-		}
+		background: #ed5b33;
+		 overflow:hidden;
+		 width:100%;
 
 		#portfolio {
 		  background: #F4F4F4;
 		  color: white;
+		  position: relative;
 
-	  		.flex-viewport {
-				min-height:680px;
-			}
 
 		  h2 {
 		    font-family: "TradeGothic", sans-serif;
@@ -38,90 +28,8 @@
 		    -webkit-font-smoothing: antialiased;
 		    max-width: 1140px;
 		    margin: 0 auto;
-		    .border-box();
 		  }
 
-		  .flexslider {
-		  	background: #363232;
-		  	border: none;
-		  	margin: 0;
-
-		  	.slides > li {
-		  		position: relative;
-
-		  		height: 680px;
-
-		  		@media screen and (max-width: 520px) {
-		  			height: 580px;
-		  		}
-
-		  		@media screen and (max-width: 400px) {
-		  			height: 540px;
-		  		}
-
-		  		@media screen and (max-width: 320px) {
-		  			height: 500px;
-		  		}
-
-		  		&.case-1 {
-		  			background:  #363232;
-		  			.case-button a:hover {
-		  				color: #363232;
-		  			}
-		  		}
-		  		&.case-2 {
-		  			background:  #5D6976;
-		  			.case-button a:hover {
-		  				color: #5D6976;
-		  			}
-		  		}
-		  		&.case-3 {
-		  			background:  #172D38;
-		  			.case-button a:hover {
-		  				color: #172D38;
-		  			}
-		  		}
-		  	}
-
-		  	.flex-control-nav {
-			  	width: 100%;
-			  	max-width: 1140px;
-			  	position: relative;
-			  	bottom: auto;
-			  	text-align: left;
-			  	padding: 0 30px;
-			  	.border-box();
-			  	margin: -30px auto 0;
-				top:-30px;
-	  			@media screen and (max-width: 1174px) {
-	  				padding: 0 60px;
-	  	    }
-		  	}
-
-		  	.flex-control-paging li {
-		  		vertical-align: middle;
-
-					a {
-						width: 8px;
-						height: 8px;
-						background: white;
-						border: 2px solid transparent;
-
-						&:hover {
-						  background: #ccc;
-						  border: 2px solid transparent;
-						}
-
-						&.flex-active, &.flex-active:hover {
-							width: 12px;
-							height: 12px;
-						  background: none;
-						  border: 1px solid white;
-						  cursor: default;
-						}
-					}
-		  	}
-		  }
 			.case-image {
 				max-width: 1000px;
 				width: 100%;
@@ -135,19 +43,21 @@
 				}
 				@media screen and (max-width: 430px) {
 					max-height: none;
-					width: 100%;
+					width: 380px !important;
+					margin-left: -180px !important;
 				}
 			}
 		  .case-studies {
-		    max-width: 1140px;
+		  	background:  #363232;
 		    margin: 0 auto;
-		    padding: 100px 30px 115px;
-				.border-box();
+		    padding: 100px 20px 190px;
+			.border-box();
 
 		    .case {
-		      max-width: 500px;
-		      width: 47%;
-		      height: 420px;
+		      max-width: 1070px;
+				width: 100%;
+				height: 420px;
+				margin: 0 auto;
 		      //position: relative;
 		      h3 {
 		        font-family: "Plantin", serif;
@@ -155,6 +65,7 @@
 		        font-size: 38px;
 	        	line-height: 1.1;
 		        -webkit-font-smoothing: antialiased;
+		        width:50%;
 
 		        @media screen and (max-width: 1024px) {
 		        	font-size: 32px;
@@ -162,39 +73,48 @@
 		        @media screen and (max-width: 800px) {
 		        	font-size: 28px;
 		        }
+		        @media screen and (max-width: 600px) {
+		        	font-size: 24px;
+		        }
 		        @media screen and (max-width: 400px) {
-		        	font-size: 18px;
+		        	font-size: 20px;
 		        	line-height: 20px;
 		        }
 		      }
 		      p {
 		        font-family: "Plantin", serif;
-		        font-size: 18px;
-		        line-height: 24px;
+		        font-size: 23px;
+		        line-height: 31px;
 		        -webkit-font-smoothing: antialiased;
 		        margin: 0;
+		        width:50%;
 
 		        @media screen and (max-width: 1024px) {
 		        	font-size: 16px;
+		        	line-height: 26px;
 		        }
 		      }
 		    }
 
 		    @media screen and (max-width: 1174px) {
-					padding: 100px 60px 115px;
+				//	padding: 100px 60px 115px;
 		    }
 		  }
 			.case-button {
 				max-width: 1140px;
 				width: 100%;
 				height: 44px;
-				margin: -90px auto;
-				padding: 0 30px;
+				padding: 0 40px;
 				.border-box();
+				margin: -100px auto 20px;
 
-				@media screen and (max-width: 1174px) {
-					padding: 0 60px;
-		    }
+				@media screen and (max-width: 1120px) {
+					padding: 0 20px
+				}
+
+				@media screen and (max-width: 820px) {
+					margin-top:-200px;
+				}
 
 				a {
 				  color: white;
@@ -220,14 +140,16 @@
 					display: none;
 				}
 				.case-image {
-					position: static;
-					padding: 0 30px 15px;
-					max-width: 550px;
-					margin: 0 auto;
+					left: 50%;
+					width: 500px;
+					margin-left: -250px;
+					margin-top:70px;
+					padding: 0 30px;
 					.border-box();
 				}
 				.case-studies {
-					padding: 0 30px 20px;
+					padding: 0 20px;
+					height:630px;
 
 					.case {
 						height: auto;
@@ -235,17 +157,26 @@
 						max-width: 100%;
 
 						h3 {
-							margin-top: 70px;
+							margin:0;
+							padding-top:50px;
+							width:100%;
 						}
 
 						p { display: none; }
 					}
+
 				}
 				.case-button {
 					position: static;
 					text-align: center;
-					padding-top: 115px;
+					padding: 55px 0;
+					margin-top: -170px;
 				}
+		  }
+		  @media screen and (max-width: 420px) {
+		  	.case-studies {
+			  	height:545px;
+			  }
 		  }
 		}
 		#clients {
@@ -347,10 +278,7 @@
 		#testimonial {
 		  background: #ffffff;
 		  padding: 0 0 40px;
-
-		  .flex-viewport {
-				min-height:361px;
-			}
+		  position: relative;
 
 		  .client-quote {
 		    text-align: center;
@@ -398,7 +326,7 @@
 		      }
 
 		      strong {
-		        color: #F05A28;
+		        color: #ed5b33;
 		      }
 		      padding-bottom: 50px;
 		    }
@@ -478,7 +406,7 @@
 
 		#learn-more {
 		  display: block;
-		  background: #F05A28;
+		  background: #ed5b33;
 		  color: white;
 		  margin: 0 auto ;
 		  padding: 0;
@@ -492,7 +420,7 @@
 		    vertical-align: top;
 		    width: 33.3%;
 		    padding: 115px 3.5%;
-		    background: #F05A28;
+		    background: #ed5b33;
 		    .border-box();
 		    height: 480px;
 
@@ -560,10 +488,15 @@
 		      border-radius: 4px;
 		      font-family: "TradeGothic", sans-serif;
 		      -webkit-font-smoothing: antialiased;
+		      position: absolute;
+				bottom: 80px;
+			@media screen and (max-width: 720px) {
+				position:static;
+			}
 
 		      &:hover {
 		      	background: white;
-		      	color: #F05A28;
+		      	color: #ed5b33;
 		      }
 		    }
 		  }

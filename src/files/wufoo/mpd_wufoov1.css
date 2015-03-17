@@ -11,16 +11,16 @@
 /* - - - Default - - - */
 
 /* Logo */
-#logo { 
+#logo {
 	margin-top: 35px;
-	background: none; 
+	background: none;
 	margin-left: 23px;
 
 }
 #logo a {
-	background:url('https://dl.dropboxusercontent.com/u/12648478/MPD_Logo_Wufoo_sm.png') no-repeat; 
-	height:150px; 
-	text-indent: -9999px; 
+	background:url('https://dl.dropboxusercontent.com/u/12648478/MPD_Logo_Wufoo_sm.png') no-repeat;
+	height:150px;
+	text-indent: -9999px;
 	background-repeat: no-repeat;
 	background-position: 0px;
 }
@@ -42,9 +42,9 @@ body {
 	padding: 25px;
 }
 #container {
-	background:#FFFFFF; 
-	width: 680px; 
-	margin: 0 auto; 
+	background:#FFFFFF;
+	width: 680px;
+	margin: 0 auto;
 	padding: 0 20px;
 	border: 5px solid rgba(0,0,0,0.1);
 }
@@ -61,9 +61,9 @@ body {
 @font-face{font-family:'tradegothic';src:url(http://myplanetdigital.com/sites/all/themes/myplanet/fonts/tradegothicltstd-webfont.eot);src:url(http://myplanetdigital.com/sites/all/themes/myplanet/fonts/tradegothicltstd-webfont.eot?#iefix) format('embedded-opentype'),url(http://myplanetdigital.com/sites/all/themes/myplanet/fonts/tradegothicltstd-webfont.woff) format('woff'),url(http://myplanetdigital.com/sites/all/themes/myplanet/fonts/tradegothicltstd-webfont.ttf) format('truetype'),url(http://myplanetdigital.com/sites/all/themes/myplanet/fonts/tradegothicltstd-webfont.svg#TradeGothicLTStdRegular) format('svg');font-weight:normal;font-style:normal;}
 @font-face{font-family:'tradegothic';src:url(http://myplanetdigital.com/sites/all/themes/myplanet/fonts/tradegothicltstd-bd2-webfont.eot);src:url(http://myplanetdigital.com/sites/all/themes/myplanet/fonts/tradegothicltstd-bd2-webfont.eot?#iefix) format('embedded-opentype'),url(http://myplanetdigital.com/sites/all/themes/myplanet/fonts/tradegothicltstd-bd2-webfont.woff) format('woff'),url(http://myplanetdigital.com/sites/all/themes/myplanet/fonts/tradegothicltstd-bd2-webfont.ttf) format('truetype'),url(http://myplanetdigital.com/sites/all/themes/myplanet/fonts/tradegothicltstd-bd2-webfont.svg#TradeGothicLTStdBoldNo.2) format('svg');font-weight:bold;font-style:normal;}
 
-body { 
+body {
 	font-family: 'plantin', Georgia, serif;
-	font-size: 14.5px; 
+	font-size: 14.5px;
 }
 .wufoo .info h2{
 	font: bold 350% 'tradegothic', sans-serif;
@@ -81,7 +81,7 @@ body {
 	color:#444444;
 }
 .wufoo .section h3 {
-	color: #F05A28;
+	color: #ed5b33;
 	font: bold 190% 'tradegothic', Georgia, serif;
 	margin-top: 20px;
 	letter-spacing: -0.08em;
@@ -117,9 +117,9 @@ label.desc {
 }
 .wufoo {
 	font-family: 'plantin', Georgia, serif;}
-	
+
 .wufoo input.text {
-	height: 18px; 
+	height: 18px;
 	}
 
 .wufoo input.text, .wufoo textarea.textarea {
@@ -130,15 +130,15 @@ label.desc {
 	-o-transition: all 400ms ;
 	transition: all 400ms ;
 	background: #fafafa;
-	-webkit-box-sizing: border-box; 
-    -moz-box-sizing: border-box;    
-    box-sizing: border-box;  
+	-webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
 }
 .wufoo input.text:focus, .wufoo textarea.textarea:focus {
 	outline: none;
 	-webkit-box-shadow:  0px 0px 5px 0px rgba(0, 0, 0, 0.3);
 	box-shadow:  0px 0px 5px 0px rgba(0, 0, 0, 0.3);
-	border: 1px solid #F05A28;
+	border: 1px solid #ed5b33;
 	background: #fff;
 }
 .likert thead td {
@@ -146,7 +146,7 @@ label.desc {
 	font-size: 75%;
 }
 a {
-	color: #F05A28;
+	color: #ed5b33;
 	text-decoration: none;
 }
 a:hover {

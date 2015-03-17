@@ -5,9 +5,10 @@ module.exports =
 	port: 8080
 
 	env: 'static'
- 
+
 	templateData:
 		site:
+			buildTime: 'id-' + Date.now()
 			title: 'Myplanet'
 			url: ''
 			styles: [
@@ -17,7 +18,6 @@ module.exports =
 			scripts: [
 				'/scripts/pollyfill.js'
 				'/scripts/vendor/scrollfix.js'
-				'/scripts/vendor/jquery.flexslider-min.js'
 				'/scripts/modules/menu.js'
 				'/scripts/modules/tiles.js'
 				'/scripts/modules/elevator.js'

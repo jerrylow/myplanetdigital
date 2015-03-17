@@ -61,7 +61,7 @@
                         if ((elem = this[i]).nodeType === 1) {
                             if(multi) {
                                 add.apply(elem.classList, value);
-                            } else {
+                            } else if(value) {
                                 elem.classList.add(value);
                             }
                         }
@@ -80,7 +80,7 @@
                         if ((elem = this[i]).nodeType === 1) {
                             if(multi) {
                                 remove.apply(elem.classList, value);
-                            } else {
+                            } else if(value) {
                                 elem.classList.remove(value);
                             }
                         }

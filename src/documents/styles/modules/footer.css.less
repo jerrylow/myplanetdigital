@@ -5,6 +5,7 @@
 	font-family:"TradeGothic";
 	color: white;
 	padding: 100px 0 35px;
+	overflow: hidden;
 
 	@media screen and (max-width: 1200px) {
 		padding: 45px 0 35px;
@@ -61,10 +62,10 @@
 			content:'';
 			height: 81px;
 			width: 81px;
-			background: url('../images/spritempd.png') no-repeat 0 -204px;
-			background-size: 434px auto;
+			background: url('../images/spritempd.png') no-repeat 0 -243px;
+			background-size: 290px auto;
 			position:absolute;
-			margin-left:-134px;
+			margin-left:-124px;
 			margin-top:-22px;
 		}
 
@@ -141,12 +142,11 @@
 						left: 0;
 						background: url(../images/spritempd.png) 0 0 no-repeat;
 						background-size: 533px;
-						opacity: 0.01;
-						.translateZ();
+						opacity: 0;
 						.transition(opacity 0.3s);
 					}
 					&:hover:after {
-						opacity: 0.99;
+						opacity: 0.999;
 						.transition(opacity 0.3s);
 					}
 					&.twitter {

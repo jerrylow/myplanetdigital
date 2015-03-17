@@ -5,101 +5,50 @@
 		return;
 	}
 	var $window = $(window),
-		$body = $('body'),
-		$viewport = $('#viewport'),
-		MOBILE_MENU_WIDTH = '-249px',
-		curOffset;
+		RAF_OFFSET = 16;
 
-	function getNormalizedScrollBy(delta) {
-		if(window.isIOS) {
-			return delta - window.pageYOffset;
+	function easeInOutQuad(t, b, c, d) {
+		t /= d/2;
+		if (t < 1) return c/2*t*t + b;
+		t--;
+		return -c/2 * (t*(t-2) - 1) + b;
+	}
+	function scrollTo(to) {
+		var start = window.curScrollTop,
+			change = to - start,
+			duration = Math.round(Math.min(Math.abs(change * 1.25), window.responsiveState === 'mobile' ? 500 : 650)),
+			currentTime = 0,
+			last = new Date(),
+			val;
+		function scrollStep () {
+			window.scrollTo(0, window.curScrollTop = val);
+			if((currentTime < duration)) {
+				window.setTimeout(animateScroll, 0);
+			} else {
+				window.scrollTo(0, to);
+				$window.trigger('elevator-done');
+			}
 		}
-		var offset = window.pageYOffset,
-			maxDelta = document.body.scrollHeight - window.pageHeight - offset,
-			minDelta = -offset;
-		return Math.max(minDelta, Math.min(delta, maxDelta));
+		function animateScroll(){
+			var now = new Date();
+			val = easeInOutQuad(currentTime += now - last, start, change, duration);
+			last = now;
+			window.requestAnimationFrame(scrollStep);
+		}
+
+		if(window.responsiveState === 'mobile') {
+			window.scrollTo(0, to);
+			return $window.trigger('elevator-done');
+		}
+		animateScroll();
 	}
 
 	$window.on('scroll-top', function() {
-		window.requestAnimationFrame(function() {
-			if(window.isBusy) {
-				return;
-			}
-			var delta = window.pageYOffset,
-				isMobileMenuOpen = window.responsiveState === 'mobile' && window.mobileMenuIsOpen;
-			if(!delta) {
-				return $window.trigger('elevator-done');
-			}
-			curOffset = 0;
-			$viewport.css({
-				transform: 'translate3d(' + (isMobileMenuOpen ? MOBILE_MENU_WIDTH : '0') + '0,0)'
-			});
-			window.setTimeout(window.requestAnimationFrame.bind(null, function () {
-				$body.addClass('animating');
-				$viewport.css({
-					transform: 'translate3d(' + (isMobileMenuOpen ? MOBILE_MENU_WIDTH : '0') + ',' + delta + 'px, 0)',
-					transition: 'transform 0.625s'
-				});
-				window.isElevating = true;
-			}), 0);
-		});
+		return scrollTo(0);
 	});
 
 	$window.on('scroll-to', function(e, newTop) {
-		window.requestAnimationFrame(function () {
-			if(window.isBusy) {
-				return;
-			}
-			var delta = getNormalizedScrollBy(newTop),
-				isMobileMenuOpen = window.responsiveState === 'mobile' && window.mobileMenuIsOpen;
-			if (!delta) {
-				return $window.trigger('elevator-done');
-			}
-			curOffset =  window.pageYOffset + delta;
-			$viewport.css({
-				transform: 'translate3d(' + (isMobileMenuOpen ? MOBILE_MENU_WIDTH : '0') + '0,0)'
-			});
-			window.setTimeout(window.requestAnimationFrame.bind(null, function () {
-				$body.addClass('animating');
-				$viewport.css({
-					transform: 'translate3d(' + (isMobileMenuOpen ? MOBILE_MENU_WIDTH : '0') +  ',' + -delta + 'px, 0)',
-					transition: 'transform 0.625s'
-				});
-				window.isElevating = true;
-			}), 0);
-		});
-	});
-
-	function finishTransitionEnd () {
-		$viewport.css({
-			transform: '',
-			transition: ''
-		});
-		$body.removeClass('animating');
-		$window.trigger('elevator-done');
-		window.isElevating = false;
-	}
-
-	$viewport.on('transitionend webkitTransitionEnd', function(e) {
-		if (!window.isElevating || e.target !== $viewport[0]) {
-			return;
-		}
-		var isMobileMenuOpen = window.responsiveState === 'mobile' && window.mobileMenuIsOpen;
-
-		window.setTimeout(window.requestAnimationFrame.bind(null, function() {
-			$viewport.css({
-				transform: 'translate3d(' + (isMobileMenuOpen ? MOBILE_MENU_WIDTH : '0') + ',0,0)',
-				transition: 'none'
-			});
-			if (!window.isIOS || window.isIOS8) {
-				window.scroll(0, window.curScrollTop = curOffset);
-				return finishTransitionEnd();
-			}
-			window.setTimeout(function() {
-				window.scroll(0, window.curScrollTop = curOffset);
-				window.setTimeout(window.requestAnimationFrame.bind(null, finishTransitionEnd), 0);
-			}, 0);
-		}), 0);
+		return scrollTo(newTop);
 	});
 
 }());

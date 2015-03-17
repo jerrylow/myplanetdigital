@@ -10,7 +10,7 @@
 	<% end %>
 <% end %>
 
-<nav id="menu">
+<nav id="menu" class="<% if @document.layout != 'articles' && @document.layout != 'landing': %>dark<% end %>">
 	<ul class="nav navbar-nav">
 		<% for item in @menuItems: %>
 			<% if item.slug.indexOf('.') == -1: %>
@@ -20,9 +20,9 @@
 				<% endSlash = if item.slug == 'contact' || item.slug == '' then '' else '/' %>
 				<li class="<%= liClass %><%= if liClass == active then ' active' %>">
 					<% if item.slug == 'careers' : %>
-						<a href="http://glassdoor.myplanet.com" target="_blank"><span>Careers</span></a>
+						<a data-attr="Careers" href="http://glassdoor.myplanet.com" target="_blank">Careers</a>
 					<% else: %>
-					<a  <%= if item.slug == 'contact' then 'data-attr=contact-link' %>
+					<a  data-attr="<%=item.title or item.menuTitle%>"
 						href="<%= if item.meta.link? then item.meta.link else @getUrl(item.url) %><%= endSlash %>"
 						<% if item.meta.banner?: %>
 							data-banner="<%= item.meta.banner %>"
@@ -31,9 +31,7 @@
 						data-menu-doodle="<%= if item.meta.doodle? then item.meta.doodle else 'bannerdoodle.png' %>"
 						data-tag="<%= liClass %>"
 					>
-						<span>
-							<%= item.title or item.menuTitle %>
-						</span>
+						<%= item.title or item.menuTitle %>
 						<!--[if (IE 8) | (IE 9)]>
 						<div class="menu-doodle"></div>
 						<!-- <![endif]-->

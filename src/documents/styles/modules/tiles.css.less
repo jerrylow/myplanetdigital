@@ -25,24 +25,26 @@
 		width: @tile-width;
 		padding: @tile-padding;
 		.border-box();
-		opacity:0.01;
+		opacity:0.001;
 
 		.content {
 			position: relative;
 			overflow: hidden;
+			background-color: white;
 			.border-box();
 			width: 100%;
 			height: 100%;
+			border-radius:4px;
 
 			@media screen and (min-width: 1176px) {
-				&:hover {
+				&:hover, &.active-tile {
 					.main-title {
 						opacity: 0.001;
 						.transform(scale(0.9));
 						.transition-transform(0.3s, opacity 0.3s);
 					}
 					p.description {
-						opacity: 0.99;
+						opacity: 0.999;
 					.transform(scale(1));
 						.transition-transform(0.3s, opacity 0.5s ease-out);
 					}
@@ -51,17 +53,17 @@
 					}
 				}
 			}
-
 			.tile-content {
 				position: relative;
 				height:100%;
 				width: 100%;
+				background-color: #fff;
+				z-index: 1;
 			}
 			a.tile-title {
 				display: block;
 				width: 100%;
 				height: 100%;
-				background-color: white;
 				padding: 75px 40px 0 70px;
 				.border-box();
 			}
@@ -76,7 +78,7 @@
 				letter-spacing: -1px;
 				line-height: 1.1;
 				margin: 0;
-				opacity: 0.99;
+				opacity: 0.999;
 				.transform(scale(1));
 				.transition-transform(0.3s, opacity 0.5s ease-out);
 
@@ -123,6 +125,8 @@
 			}
 			a.tile-image {
 				display: block;
+				position: relative;
+				z-index: 1;
 				width: 100%;
 				height: 50%;
 				background-repeat: no-repeat;
@@ -186,7 +190,7 @@
 				border-bottom: 1px solid @doodle-line-white;
 				overflow: hidden;
 				cursor: pointer;
-				.transform(translateZ(0) rotate(-45deg));
+				.transform(rotate(-45deg));
 
 				&:before {
 					position: absolute;
@@ -198,8 +202,8 @@
 					width: 52px;
 					background: url(../images/spritempd.png) 0 0 no-repeat;
 					background-size: 380px auto;
-					.transform(translateZ(0) rotate(45deg));
-					.transition-transform(0.25s);
+					.transform(rotate(45deg));
+					.transition(left 0.275s, top 0.275s);
 				}
 				&.company:before {
 					background-position: -336px 0;
@@ -283,7 +287,7 @@
 			}
 		}
 		&.black {
-			a.tile-title {
+			.content, .content .tile-content {
 				background-color: black;
 			}
 			.main-title, p.description {
@@ -389,9 +393,15 @@
 }
 
 .desktop-capable #main .tile .content .tags > li:hover a.tile-doodle:before {
-	.hideBack();
-	.transform(rotate(45deg) translate3d(-9px,-9px,0));
+	left: 35px;
+	top: 36px;
 }
+
+.desktop-capable #main .tile.large .content .tags > li:hover a.tile-doodle:before {
+	left: 50px;
+	top: 32px;
+}
+
 
 #main .tile {
 	.transition(opacity 0.4s ease-in-out);
@@ -403,30 +413,30 @@
 
 #main .tile {
 	@media screen and (min-width: 569px) {
-		.translateZ();
+		//.translateZ();
 
 		&.hidden {
-			.translate3d(0, 80px, 0);
+			//.translate3d(0, 80px, 0);
 		}
 
 		&.reveal {
-			opacity: 0.99;
-			.transition(0.375s ease-out 0.159s, opacity 0.425s ease-in 0.16s);
-			.translateZ();
+			opacity: 1;
+			//.transition(0.375s ease-out 0.159s, opacity 0.425s ease-in 0.16s);
+			//.translateZ();
 		}
 		&.show {
-			opacity: 0.99;
-			.transition(opacity 0s 1.5s);
+			opacity: 1;
+			//.transition(opacity 0s 1.5s);
 		}
 		&.revealed {
 			opacity: 1;
-			.transform(none);
-			.transition(inherit);
+			//.transform(none);
+			//.transition(inherit);
 		}
 	}
 
 	@media screen and (max-width: 568px) {
-		opacity: 0.99
+		opacity: 0.999
 	}
 
 	.content ul.tags {

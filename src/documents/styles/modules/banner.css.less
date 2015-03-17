@@ -1,12 +1,16 @@
 @import "../includes.less";
 
 #banner {
+    display: table;
+    position:fixed;
+    width:100%;
     color: white;
-    .border-box();
+  //  padding-bottom:300px;
     height: 557px;
+    padding-bottom:200px;
     background: transparent;
-    .transition(background 0.5s);
-    //.translate3d(0,0,0);
+    opacity:0.999;
+   // .translate3d(0,0,0);
 
     &.home {
         background: @mpd-orange;
@@ -31,6 +35,7 @@
     }
 
     @media only screen and (max-width :1174px) {
+        top: 75px;
         height: 345px;
     }
     @media only screen and (max-width :900px) {
@@ -38,6 +43,7 @@
     }
     @media only screen and (max-width :767px) {
         height: 235px;
+        top:62px;
         .transform(none);
         .showBack();
         .transition(none);
@@ -47,10 +53,10 @@
     }
 
     .banner-text {
+        display: table-cell;
+        vertical-align: middle;
         position: relative;
-        max-width: 935px;
-        margin: 0 auto;
-        padding-top: 231px;
+        padding: 50px 40px 0;
         .border-box();
         text-align: left;
         font-family: "Plantin";
@@ -58,13 +64,15 @@
         font-size: 3.6em;
         line-height: 60px;
         letter-spacing: -2.3px;
-        .font-fix();
+        //.font-fix();
+        .translateZ();
         .transition(opacity 0.4s ease-in-out);
 
         h2 {
-            margin: 0;
             padding: 0 10px;
             font-size: 1em;
+            max-width: 900px;
+            margin: 0 auto;
         }
 
         &:before {
@@ -73,8 +81,8 @@
             position: absolute;
             width: 660px;
             height: 500px;
-            top: -150px;
-            left: 550px;
+            top: 280px;
+            right: -265px;
             background-image: url(../../images/Banner-Doodle-Top.png);
             background-size: 677px;
             background-repeat: no-repeat;
@@ -94,19 +102,22 @@
 
         @media only screen and (max-width :1174px) {
             font-size: 3.3em;
-            padding-top: 90px;
             width: 855px;
             line-height: 56px;
-            &:before, &:after {
-                display: none;
+            padding: 0 20px;
+            &:before {
+                top:140px;
+                right:-340px;
             }
         }
         @media only screen and (max-width :900px) {
             font-size: 2.5em;
-            padding: 60px 20px 0;
             letter-spacing: -1.7px;
             width: 90%;
             line-height: 45px;
+             &:before, &:after {
+                display: none;
+            }
         }
         @media only screen and (max-width :767px) {
             font-size: 2em;
@@ -121,7 +132,6 @@
             line-height: 33px;
         }
         @media only screen and (max-width :530px) {
-            padding-top: 40px;
             font-size: 1.7em;
             letter-spacing: -1.1px;
             width: 100%;
@@ -133,12 +143,20 @@
     }
 
     &.home {
-        .banner-text {
-            max-width: 1140px;
-            width: 100%;
-            padding-left: 30px;
-            padding-right: 30px;
 
+        .banner-text {
+            padding-top:90px;
+            width: 100%;
+            left:-15px;
+            h2 {
+                padding:0;
+                max-width: 1040px;
+            }
+            @media screen and (max-width: 1174px) {
+                padding-top:inherit;
+                left:0;
+            }
+        } /*
             h2 {
                 max-width: 800px;
                 letter-spacing: -1px;
@@ -171,21 +189,22 @@
 
         @media screen and (max-width: 1174px) {
             height: auto;
-        }
+        }*/
         .banner-button {
+            margin: 35px auto 0;
             text-align: left;
-
+            max-width:1040px;
             .button {
                 color: white;
                 background: none;
                 border: 1px solid white;
                 padding: 13px 24px;
                 text-decoration: none;
-                border-radius: 4px;
+                border-radius: 5px;
                 -webkit-font-smoothing: antialiased;
                 font-family: "TradeGothic", sans-serif;
                 font-weight: normal;
-                font-size: 16px;
+                font-size: 18px;
                 letter-spacing: 0;
                 cursor: pointer;
 
@@ -193,12 +212,17 @@
                     background: white;
                     color: @mpd-orange;
                 }
+                @media screen and (max-width: 520px) {
+                    font-size:16px;
+                }
             }
             @media screen and (max-width: 720px) {
                 width: 100%;
                 text-align: center;
-
+            }
+            @media screen and (max-width: 420px) {
                 .button {
+                    font-size:15px;
                     line-height: 1;
                     text-align: center;
                     box-sizing: border-box;
