@@ -36,10 +36,6 @@
 			window.requestAnimationFrame(scrollStep);
 		}
 
-		if(window.responsiveState === 'mobile') {
-			window.scrollTo(0, to);
-			return $window.trigger('elevator-done');
-		}
 		animateScroll();
 	}
 
