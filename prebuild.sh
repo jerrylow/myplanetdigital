@@ -8,7 +8,7 @@ git config --global user.name "$GIT_NAME"
 echo "Resetting origin url to $REPO_URL"
 git remote rm origin
 git remote add origin $REPO_URL
-
+ 
 git remote -v
 
 #echo "DEBUG, cd out"
