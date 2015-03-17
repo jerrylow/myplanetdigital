@@ -13,13 +13,11 @@ a, a:focus, a:active{
 }
 
 body {
-	&.scrolling #viewport, &.scrolling  #viewport *, &.animating  #viewport, &.animating  #viewport * {
-		pointer-events:none !important;
-	}
 	background: #444;
 
 	&.loaded {
 		#viewport {
+			//opacity:0.999;
 			#main, #article {
 				.transition-transform(@article-transition-time);
 			}

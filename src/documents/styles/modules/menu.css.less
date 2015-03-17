@@ -59,63 +59,8 @@
 							position:absolute;
 						}
 					}
-					&.design, &.technology, &.community {
-						position:absolute;
-						margin-left: -54px;
-						//pointer-events:none;
-						a:before, a:after {
-							opacity:0.001;
-							.transform(translate3d(-10px, 77px, 0) scale(0.5));
-							.transition-delay(0) !important;
-						}
-					}
-					&.technology {
-						a:before, a:after {
-							opacity:0.001;
-							.transform(translate3d(-16px, 87px, 0) scale(0.5));
-						}
-					}
-					&.community {
-						a:before, a:after {
-							opacity:0.001;
-							.transform(translate3d(-15px, 97px, 0) scale(0.5));
-						}
-					}
-					&.blog {
-						height: 100%;
-						top: -45px;
-						padding: 0 25px 0 0;
-						left: 25px;
-						&.hover {
-							~ .design, ~ .technology, ~ .community {
-								//pointer-events:auto;
-								a:before {
-									opacity:0.999;
-								}
-							}
-							~ .design {
-								a:before, a:after {
-									.transform(translate3d(0, 90px, 0));
-								}
-							}
-							~ .technology {
-								a:before, a:after {
-									.transform(translate3d(0, 117px, 0));
-								}
-							}
-							~ .community {
-								a:before, a:after {
-									.transform(translate3d(0, 143px, 0));
-								}
-							}
-						}
-					}
-
 					&.contact, &.careers {
-						left:50px;
-					}
-					&.company {
-						margin-left:60px;
+						left:40px;
 					}
 				}
 			}
@@ -155,16 +100,6 @@
 							}
 						}
 					}
-					&.blog.hover {
-						~ .design, ~ .technology, ~ .community {
-							a:after {
-								opacity:0.999;
-							}
-							a:before {
-								opacity:0.001;
-							}
-						}
-					}
 				}
 			}
 			&.dark {
@@ -199,21 +134,6 @@
 							}
 						}
 					}
-					&.design {
-						a:before, a:after {
-							.transform(translate3d(0, 54px, 0));
-						}
-					}
-					&.technology {
-						a:before, a:after {
-							.transform(translate3d(0, 64px, 0));
-						}
-					}
-					&.community {
-						a:before, a:after {
-							.transform(translate3d(0, 74px, 0));
-						}
-					}
 				}
 			}
 			&.delay {
@@ -224,29 +144,6 @@
 					&.blog, a {
 						&:before, &:after {
 							.transition-delay(@menu-offset-delay);
-						}
-					}
-				}
-			}
-			&.expanded {
-				&:before, &:after {
-					.transform(translate3d(0, 0, 0));
-					.transition-delay(0);
-				}
-				> ul li.blog.hover {
-					~ .design {
-						a:before, a:after {
-							.transform(translate3d(0, 66px, 0));
-						}
-					}
-					~ .technology {
-						a:before, a:after {
-							.transform(translate3d(0, 90px, 0));
-						}
-					}
-					~ .community {
-						a:before, a:after {
-							.transform(translate3d(0, 113px, 0));
 						}
 					}
 				}

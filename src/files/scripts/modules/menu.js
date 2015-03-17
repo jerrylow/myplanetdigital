@@ -48,7 +48,6 @@
 			indicatorScaleX,
 			indicatorRotation = 0,
 			indicatorOpacity,
-			isExpandedMenu,
 			$item;
 		if(!item) {
 			item = $menu.find('.active')[0];
@@ -56,14 +55,7 @@
 		if(!item._offset) {
 			updateOffsets();
 		}
-		if(($item = $(item)).hasClass('blog')) {
-			isExpandedMenu = $menu.hasClass(MENU_COLOR);
-			indicatorOffset = item._offset.left + LI_PADDING - 40;
-			indicatorRotation = -90;
-			indicatorScaleX = isExpandedMenu ? 0.61 : 0.66;
-			indicatorOpacity = 0.5;
-			offset = (offset || 0) + (isExpandedMenu ? 70 : 80);
-		} else if ($item.hasClass('home')) {
+		if (($item = $(item)).hasClass('home')) {
 			indicatorOffset = item._offset.left + LOGO_WIDTH;
 			indicatorOpacity = 0.4;
 			indicatorScaleX = 0.1;
@@ -341,11 +333,6 @@
 
 				t = window.setTimeout(removeHover = function () {
 					$el.removeClass('hover');
-					if($menu.hasClass('expanded')) {
-						$menu.removeClass('expanded').addClass('no-delay').one('transitionend webkitTransitionEnd', function () {
-							$menu.removeClass('no-delay');
-						});
-					}
 					setIndicator();
 					t = null;
 					removeHover = null;
@@ -356,23 +343,11 @@
 					return;
 				}
 				var $me = $(this);
-				if($me.hasClass('community') || $me.hasClass('design') || $me.hasClass('technology')) {
-					$menu.removeClass('community').removeClass('design').removeClass('technology').addClass($me[0].className);
-					return window.clearTimeout(t);
-				}
 				$me.addClass('hover');
 				if(t) {
 					window.clearTimeout(t);
 					t = null;
 					$me.siblings().removeClass('hover');
-					if($menu.hasClass('expanded')) {
-						$menu.removeClass('expanded').addClass('no-delay').one('transitionend webkitTransitionEnd', function () {
-							$menu.removeClass('no-delay');
-						});
-					}
-				}
-				if($me.hasClass('blog') && $menu.hasClass(MENU_COLOR)) {
-					$menu.addClass('expanded');
 				}
 				setIndicator(this);
 			});
@@ -393,7 +368,6 @@
 				}
 				if(!window.isTileView && e.clientY > 0 && e.relatedTarget !== $back[0]) {
 					hideMenu(null, null, 'transform 0.4s');
-					$menu.removeClass('expanded');
 					if(removeHover) {
 						removeHover();
 					}

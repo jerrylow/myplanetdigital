@@ -18,9 +18,6 @@
 				<% liClass = if item.slug is '' then 'home' else item.slug %>
 				<% liClass = item.meta.class if item.meta.class? %>
 				<% endSlash = if item.slug == 'contact' || item.slug == '' then '' else '/' %>
-				<%if item.slug == 'design' :%>
-					<li class="blog" data-attr="Blog">Blog</li>
-				<% end %>
 				<li class="<%= liClass %><%= if liClass == active then ' active' %>">
 					<a  data-attr="<%=item.title or item.menuTitle%>"
 						href="<%= if item.meta.link? then item.meta.link else @getUrl(item.url) %><%= endSlash %>"

@@ -712,7 +712,7 @@
             return false;
         }
         if (!isExternalUrl(url)) {
-            if (e.currentTarget.getAttribute('data-attr') === 'contact-link') {
+            if (e.currentTarget.getAttribute('data-attr') === 'Contact Us') {
                 if (window.responsiveState === 'mobile' && window.isWebkitMobileNotIOS) {
                     $wrap.css({
                         position: 'absolute'
