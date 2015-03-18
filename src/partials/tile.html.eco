@@ -13,7 +13,7 @@
 <% @document.size ?= 'medium' %>
 <% @document.size = 'small' if not tile %>
 
-<% if (@document.tags && @tagName && (@tagName not in @document.tags)): %>
+<% if ('policy' in @document.tags) || (@tagName not in @document.tags): %>
 	<% visibility = '' %>
 <% else: %>
 	<% visibility = 'visible' %>
