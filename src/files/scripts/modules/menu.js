@@ -32,6 +32,7 @@
 		scrollMenuOffset = menuShown ? -(SMALL_HEADER_HEIGHT / 2) : 0,
 		articleMenuOffset = MENU_HEIGHT_OFFSET,
 		HEADER_HEIGHT = 147,
+		IS_IE = navigator.userAgent.toLowerCase().indexOf('trident') > -1,
 		INDICATOR_WIDTH = 100,
 		LOGO_WIDTH = 75,
 		MENU_WIDTH = 250,
@@ -67,7 +68,7 @@
 		// + item.offsetWidth / 2 - INDICATOR_WIDTH;
 	//window.requestAnimationFrame(function() {
 		$indicator.css({
-			transform: 'translate3d(' + Math.round(indicatorOffset) + 'px, ' + Math.ceil(scrollMenuOffset + articleMenuOffset + (offset || 0)) + 'px, 0) rotate(' + indicatorRotation + 'deg) scaleX(' + indicatorScaleX + ') scaleY(1.5)',
+			transform: 'translate3d(' + Math.round(indicatorOffset) + 'px, ' + Math.ceil(scrollMenuOffset + articleMenuOffset + (offset || 0)) + 'px, 0) rotate(' + indicatorRotation + 'deg) scaleX(' + indicatorScaleX + ') scaleY(' + (IS_IE ? 1 : 1.5) + ')',
 			opacity: indicatorOpacity,
 			transition: transition || ''
 		});

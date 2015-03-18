@@ -115,12 +115,12 @@ div.image-full img {
 #logo {
   height:95px;
   width:@logo-width;
-  position:fixed;
+  position:absolute;
   top:20px;
-  left: 0;
+  left: 50%;
   font-size: 0;
-  margin-left:@logo-gutter-width;
-  background:url('../images/sprite-ie.png') 3px -95px no-repeat transparent;
+  margin-left:-547px;
+  background:url('../images/sprite-ie.png') 3px -188px no-repeat transparent;
   z-index: 101;
 
   &:hover {
@@ -140,12 +140,13 @@ body.width-mobile #logo {
 }
 
 #viewport {
-  margin-top: @menu-height;
+  margin-top:0;
 }
 
 body.article #viewport {
   margin-top: 100px;
 }
+
 
 @menu-transition-time:0.35s;
 @indicator-width: 8px;
@@ -154,21 +155,19 @@ body.article #viewport {
 @menu-line-width:84px;
 
 #menu {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   z-index:100;
   width:100%;
   min-width: 1024px;
-  color:#000;
-  background:#fff;
-  border-bottom: 1px solid #ddd;
 
   ul {
     font-size:0;
     margin:0;
     padding:0;
-    margin-left: 100px;
+    text-align: center;
+    margin-left: -270px;
   }
 }
 
@@ -186,42 +185,39 @@ body.article #viewport {
   background:transparent;
   padding: 0;
   zoom: 1;
-  color: black;
+  &.contact {
+    padding-left:40px;
+    padding-right:66px;
+    white-space: nowrap;
+  }
+  > a {
+      display:inline-block;
+      height:@menu-height - 10;
+      line-height:@menu-height - 10;
+      text-align: center;
+      position: relative;
+      text-decoration: none;
+      color: #fff;
+  }
+  &.hover, &.active {
+    > a {
+      text-decoration: underline;
+    }
+  }
+}
+/*
   &.active {
     color:#000;
   }
   &.all {
     display:none;
   }
-  a {
-      display:inline-block;
-      height:100%;
-      position: relative;
-      color: black;
-      text-decoration: none;
-      z-index: 1;
-      width: 70px;
-  }
-  a > span {
-    z-index: 1;
-    position: relative;
-    top: 60px;
-  }
-  a > .menu-doodle {
-    content:'';
-    position:absolute;
-    top: 41px;
-    left: 10px;
-    width: 53px;
-    height: 53px;
-    background:url('../images/sprite-ie.png') no-repeat 0 0;
-    zoom: 1;
-  }
+
   &.home {
     display: inline-block;
     visibility: hidden;
   }
-  &.company, &what-we-do {
+  &.company, &.what-we-do {
     a > .menu-doodle {
       background-position: -451px -116px;
     }
@@ -256,7 +252,7 @@ body.article #viewport {
     }
   }
   &.contact {
-    margin-right: 150px;
+    margin-left: 50px;
     a > .menu-doodle {
       width: 63px;
       left: 0;
@@ -289,30 +285,6 @@ body.article #viewport {
       a > .menu-doodle {
         background-position: -143px -60px;
       }
-    }
-    &:before {
-      content: 'thoughts';
-      display: block;
-      position: absolute;
-      top: 60px;
-      left: -60px;
-      font-family: 'TradeGothicBold', Arial, Sans-serif;
-      font-size: 13px;
-      letter-spacing: -0.03em;
-      width: 70px;
-      text-align: left;
-    }
-    &:after {
-      content: '';
-      display: block;
-      position: absolute;
-      top: 60px;
-      left: -7px;
-      height: 15px;
-      width: 20px;
-      background: url(../images/sprite-ie.png);
-      background-position: -323px -183px;
-    }
   }
   &.technology {
     a > .menu-doodle {
@@ -340,7 +312,7 @@ body.article #viewport {
   }
   &.hover, &.active {
     > a {
-      padding-top: 35px;
+      text-decoration: underline;
     }
   }
 }
@@ -364,7 +336,7 @@ body.width-mobile #menu ul > li {
   }
 }
 
-
+*/
 // Tiles
 
 @tile-height: 250px;
@@ -714,6 +686,12 @@ body.article #main {
             background-position: -215px -167px;
             &:after {
               background-position: -215px -188px;
+            }
+          }
+          &.glassdoor {
+            background:url(../images/spritempd-ie.png) -262px -205px no-repeat;
+            &:after {
+              background:url(../images/spritempd-ie.png) -262px -227px no-repeat;
             }
           }
         }
@@ -1504,7 +1482,7 @@ body.article #main {
     position: relative;
     max-width: 935px;
     margin: 0 auto;
-    padding-top: 231px;
+    padding-top: 291px;
     .border-box();
 
     &:before {

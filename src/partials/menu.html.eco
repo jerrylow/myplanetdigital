@@ -20,7 +20,7 @@
 				<% endSlash = if item.slug == 'contact' || item.slug == '' then '' else '/' %>
 				<li class="<%= liClass %><%= if liClass == active then ' active' %>">
 					<% if item.slug == 'careers' : %>
-						<a title="Careers" data-attr="Careers" href="http://glassdoor.myplanet.com" target="_blank">Careers</a>
+						<a title="Glassdoor Careers Page" data-attr="Careers" href="http://glassdoor.myplanet.com" target="_blank">Careers</a>
 					<% else: %>
 					<a  title="<%=item.title or item.menuTitle%>" data-attr="<%=item.title or item.menuTitle%>"
 						href="<%= if item.meta.link? then item.meta.link else @getUrl(item.url) %><%= endSlash %>"
@@ -32,9 +32,6 @@
 						data-tag="<%= liClass %>"
 					>
 						<%= item.title or item.menuTitle %>
-						<!--[if (IE 8) | (IE 9)]>
-						<div class="menu-doodle"></div>
-						<!-- <![endif]-->
 					</a>
 					<% end %>
 				</li>

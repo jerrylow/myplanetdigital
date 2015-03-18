@@ -61,6 +61,7 @@
         COVER_SRC_REGEX = /url\(['"]?(.*\.\w+)['"]?\)/,
         IS_FIREFOX = navigator.userAgent.toLowerCase().indexOf('firefox') > -1,
         IS_CHROME = navigator.userAgent.toLowerCase().indexOf('chrome') > -1,
+        IS_IE = navigator.userAgent.toLowerCase().indexOf('trident') > -1,
         IS_SAFARI = !IS_CHROME && navigator.userAgent.toLowerCase().indexOf('safari') > -1,
         FULL_WIDTH = 1324,
         DESKTOP_WIDTH = 1174,
@@ -688,6 +689,9 @@
         $body.addClass('desktop-capable');
         if (IS_SAFARI) {
             $body.addClass('safari');
+        }
+        if(IS_IE) {
+            $body.addClass('ie');
         }
     } else if(window.isIOS) {
         $body.addClass('ios');
