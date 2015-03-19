@@ -321,13 +321,9 @@
 					return;
 				}
 				var $el = $(this);
-				if($el.hasClass('community') || $el.hasClass('design') || $el.hasClass('technology')) {
-					$menu.removeClass('community').removeClass('design').removeClass('technology');
-					$el = $el.siblings().filter('.blog');
-				}
 				if($el.hasClass('home')) {
 					$el.removeClass('hover');
-					return $el.addClass('no-delay').one('transitionend webkitTransitionEnd', function () {
+					$el.addClass('no-delay').one('transitionend webkitTransitionEnd', function () {
 						$el.removeClass('no-delay');
 					});
 				}
@@ -437,6 +433,9 @@
 
 	$window.on('same-filter', function () {
 		if(window.responsiveState !== 'mobile') {
+			if(window.isTileView) {
+				isFirst = !isHidden;
+			}
 			handleScroll(null, null, 'transform 0.725s ease');
 		}
 	});
@@ -450,7 +449,7 @@
 
 	$window.on('article-transition-done', function () {
 		if(window.responsiveState !== 'mobile') {
-			menuShown = true;
+			//menuShown = true;
 			$menu.addClass(MENU_COLOR).addClass('no-transition');
 			$indicator.addClass(INDICATOR_COLOR);
 			scrollMenuOffset = -SMALL_HEADER_HEIGHT / 2;
