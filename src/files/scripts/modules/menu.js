@@ -31,7 +31,7 @@
 		MENU_HEIGHT_OFFSET = 25,
 		scrollMenuOffset = menuShown ? -(SMALL_HEADER_HEIGHT / 2) : 0,
 		articleMenuOffset = MENU_HEIGHT_OFFSET,
-		HEADER_HEIGHT = 147,
+		HEADER_HEIGHT = 105,
 		IS_IE = navigator.userAgent.toLowerCase().indexOf('trident') > -1,
 		INDICATOR_WIDTH = 100,
 		LOGO_WIDTH = 75,
