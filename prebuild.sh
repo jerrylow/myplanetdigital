@@ -12,7 +12,7 @@ git remote add origin $REPO_URL
 git remote -v
 
 #echo "DEBUG, cd out"
-#test -d out && (
+#test -d out && ( 
 #  cd out
 #  echo -n "user.email"
 #  git config user.email
