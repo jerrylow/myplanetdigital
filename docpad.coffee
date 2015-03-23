@@ -1,7 +1,7 @@
 module.exports =
 	# Experimentally figured out that 4 is warnings and more severe
 	# logLevel: (if ('-d' in process.argv) then 7 else 4)
- 
+
 	port: 8080
 
 	env: 'static'
@@ -73,7 +73,6 @@ module.exports =
 				relativeOutDirPath:
 					$in: [
 						'article'
-						'careers'
 						'work'
 						'privacy'
 					]
@@ -86,7 +85,7 @@ module.exports =
 		# Rendered content into individual segmented HTML pages.
 		content: (database) ->
 			database.findAllLive(
-				relativeOutDirPath: $in: ['work', 'article', 'careers', 'privacy']
+				relativeOutDirPath: $in: ['work', 'article', 'privacy']
 				ignored: $ne: true
 			).on "add", (model) ->
 				model.setMetaDefaults({additionalLayouts: ['content']})

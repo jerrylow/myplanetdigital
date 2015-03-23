@@ -14,7 +14,6 @@
 	<ul class="nav navbar-nav">
 		<% for item in @menuItems: %>
 			<% if item.slug.indexOf('.') == -1: %>
-
 				<% liClass = if item.slug is '' then 'home' else item.slug %>
 				<% liClass = item.meta.class if item.meta.class? %>
 				<% endSlash = if item.slug == 'contact' || item.slug == '' then '' else '/' %>
@@ -30,7 +29,6 @@
 					>
 						<%= item.title or item.menuTitle %>
 					</a>
-					<% end %>
 				</li>
 			<% end %>
 		<% end %>

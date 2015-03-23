@@ -12,6 +12,16 @@
             <a href="/article/savvis-topology/" class="button">View <strong>Case Study</strong></a>
         </div>
     </section>
+    <% homeTiles = @getCollection('homepage').findAll({tags: $in: 'home'}).toJSON() %>
+    <% if homeTiles.length: %>
+        <section id="work">
+            <% homeTileCounter = 0 %>
+            <% for document in homeTiles: %>
+                <%- @partial('tile', true, {'document': document, 'getUrl': @getUrl, 'tagName': 'home', 'tileCounter': 'home-' + homeTileCounter}) %>
+                <% homeTileCounter++ %>
+            <% end %>
+        </section>
+    <% end %>
     <section id="clients">
         <div class="clients-block">
             <h2>Select Clients</h2>
