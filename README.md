@@ -15,7 +15,7 @@ This badge may not represent reality because docpad cli tools don't return with 
 	npm install
 	grunt
 	docpad run --env static
-
+ 
 This downloads the external content, so be sure to be selective with your `git add`-ing.
 
 ## Deploying to GitHub Pages (dev.myplanet.com)
