@@ -4,8 +4,3 @@
     <%- @partial('tile', true, {'document': document, 'getUrl': @getUrl, 'tagName': @document.meta.tagName, 'tileCounter': tileCounter}) %>
     <% tileCounter++ %>
 <% end %>
-
- <% for job in @feedr.feeds.jobs.job: %>
-	<%- @partial('tile', true, {'document': {tags:['careers'], title:job.title, summary: job.briefdescription.replace(/(<([^>]+)>)/ig, ''), externalUrl:job['detail-url']}, 'getUrl': @getUrl, 'tagName': @document.meta.tagName, 'tileCounter': tileCounter}) %>
-    <% tileCounter++ %>
-<% end %>
