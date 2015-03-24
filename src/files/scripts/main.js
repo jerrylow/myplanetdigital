@@ -670,7 +670,7 @@
     window.curScrollTop = window.pageYOffset;
     window.isTileView = hasLoadedTiles = !$body.hasClass('article');
     window.isScrolling = false;
-
+    window.currentTag = $('#menu').find('li.active').attr('class').split(' ')[0];
     $window.trigger('deviceCapabilities', [{
         desktopCapable: window.desktopCapable = Math.max(screen.width, screen.height) >= DESKTOP_WIDTH,
         hasTouchEvents: window.hasTouchEvents = 'ontouchstart' in window,
@@ -679,6 +679,13 @@
         top: window.pageYOffset,
         bottom: window.pageYOffset + window.pageHeight
     }]);
+
+    var isHidden;
+    window.rotator($('#testimonial'), '.client-quote', 4000, showLanding, function () {
+        if(!window.isTileView || window.currentTag !== 'home') {
+            hideLanding();
+        }
+    });
     window.isWebkitMobileNotIOS = window.hasTouchEvents && !window.isIOS;
 
 
@@ -787,7 +794,7 @@
     });
 
     //$article.append($articleFooter = $footer.clone());
-    window.currentTag = $('#menu').find('li.active').attr('class').split(' ')[0];
+
 
     $window.on('page-change', function() {
         if (!pageLoaded) {

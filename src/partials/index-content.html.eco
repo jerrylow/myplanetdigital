@@ -43,8 +43,24 @@
     </section>
     <section id="testimonial">
         <div class="client-quote">
+           <p>We went with Myplanet because we wanted to work with an agile agency. I was very impressed with their commitment to the process. They helped educate us on a version of agile that felt authentic to what agile is. They truly practice it.</p>
+            <div class="client-title">Kiel Jared, <strong>Creative Director, Mitel</strong></div>
+        </div>
+        <div class="client-quote">
             <p>The Myplanet team helped us refine and update the front-end of our web application. Their research and user testing allowed us to craft a design that not only looks great but that meets the needs of our discerning application users.</p>
             <div class="client-title">Annie Welch, <strong>UX Manager, SolarWinds</strong></div>
+        </div>
+        <div class="client-quote">
+             <p>Myplanet has been my go-to resource for new product development – their combination of user experience, design and development help us identify and validate product concepts, then quickly bring those new offerings to market.</p>
+             <div class="client-title">Manager of User Experience Design, <strong>CenturyLink</strong></div>
+        </div>
+        <div class="client-quote">
+            <p>The entire team at Telx was really impressed with the workshop Myplanet delivered and facilitated. It’s also impressive when you are working with a vendor that immediately gets our technologies and can gain the trust of our participants. You made me look good, and for that I am grateful.</p>
+            <div class="client-title">Andrew Baird, <strong>Director of Product Management, Telx</strong></div>
+        </div>
+        <div class="client-quote">
+            <p>The expert skills that the Myplanet team brought to the project resulted in the development of a more robust site, and delivered much faster than we could have achieved in-house. I also appreciate the ongoing relationship with the team who provide both support and insight into new technology and trends that we might want to adopt.</p>
+            <div class="client-title">Colleen Raymond, <strong>Manager of Web & Database Marketing, Esri Canada</strong></div>
         </div>
     </section>
     <section id="learn-more">

@@ -277,11 +277,18 @@
 
 		#testimonial {
 		  background: #ffffff;
-		  padding: 0 0 40px;
 		  position: relative;
 
 		  .client-quote {
 		    text-align: center;
+		    opacity:0;
+		    .transition(opacity 0.7s linear);
+		    &:nth-child(1) {
+		    	opacity:1;
+		    }
+		    @media screen and (max-width: 720px) {
+				.transition(opacity 0.5s linear);
+		    }
 		    p {
 		    	max-width: 840px;
 		    	margin: 0 auto;
@@ -289,7 +296,7 @@
 		      font-family: "Plantin", serif;
 		      -webkit-font-smoothing: antialiased;
 		      font-size: 24px;
-		      padding: 100px 80px 20px;
+		      padding: 80px 80px 20px;
 		      .border-box();
 
 		      &:before {
@@ -319,45 +326,18 @@
 		      font-family: "TradeGothic", sans-serif;
 		      -webkit-font-smoothing: antialiased;
 		      font-size: 14px;
-
+				padding-bottom: 50px;
 		      @media screen and (max-width: 400px) {
 						font-size: 12px;
 						line-height: 18px;
+						padding-bottom:0;
 		      }
 
 		      strong {
 		        color: #ed5b33;
 		      }
-		      padding-bottom: 50px;
+
 		    }
-		  }
-
-		  .flexslider {
-		  	margin-bottom: 60px;
-
-  	  	.flex-control-paging li {
-  	  		vertical-align: middle;
-
-  				a {
-  					width: 8px;
-  					height: 8px;
-  					background: #bdbdbd;
-  					border: 2px solid transparent;
-
-  					&:hover {
-  					  background: #999;
-  					  border: 2px solid transparent;
-  					}
-
-  					&.flex-active, &.flex-active:hover {
-  						width: 12px;
-  						height: 12px;
-  					  background: none;
-  					  border: 1px solid #bdbdbd;
-  					  cursor: default;
-  					}
-  				}
-  			}
 		  }
 
 			@media screen and (max-width: 720px) {
@@ -375,32 +355,7 @@
 			}
 		}
 
-			 @media screen and (max-width: 720px) {
-			#portfolio .flex-viewport {
-				position:relative;
-				min-height:400px;
-			}
 
-			#testimonial .flex-viewport {
-				position:relative;
-				min-height:320px;
-			}
-
-			#testimonial, #portfolio {
-			  	.flexslider {
-
-			  	  .flex-control-nav {
-			  	  	position:absolute;
-			  	  	bottom:30px;
-			  	  	top:auto;
-			  	    text-align: center;
-			  	  }
-			  	}
-			  }
-			  #testimonial .flexslider .flex-control-nav {
-				bottom:10px;
-			  }
-		  }
 
 		// Learn more section
 

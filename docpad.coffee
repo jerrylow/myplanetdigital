@@ -22,6 +22,7 @@ module.exports =
 				'/scripts/modules/tiles.js'
 				'/scripts/modules/elevator.js'
 				'/scripts/modules/banner.js'
+				'/scripts/modules/rotator.js'
 				'/scripts/main.js'
 				'/scripts/vendor/fastclick.js'
 				'/scripts/vendor/history.min.js'
