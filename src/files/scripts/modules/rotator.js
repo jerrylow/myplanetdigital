@@ -17,11 +17,12 @@
 	}
 
 	function updateRotatorTimer(rotator) {
-		rotator.id = window[rotator.run() ? 'setInterval' : 'clearInterval'](rotator.run() ? function () {
+		var show = rotator.run();
+		rotator.timerId = window[show ? 'setInterval' : 'clearInterval'](show ? function () {
 			if(rotator.run()) {
 				hideShow(this.$items[this.curIndex], this.$items[this.curIndex = (this.curIndex + 1) % this.$items.length], rotator);
 			}
-		}.bind(rotator) : rotator.id, rotator.interval);
+		}.bind(rotator) : rotator.timerId, rotator.interval);
 	}
 
 	function updateRotatorTimers() {
@@ -64,8 +65,8 @@
 			rotator.$parent.append(rotator.$nav);
 			rotator.$nav.on('click', 'li', function () {
 				var attr = this.getAttribute('data-index');
-				window.clearInterval(rotator.id);
-				hideShow(rotator.$items[rotator.curIndex], rotator.$items[rotator.curIndex = (attr === 'next' ? rotator.curIndex + 1 : (attr === 'prev' ? (rotator.curIndex === 0 ? rotator.$items.length -1 : rotator.curIndex - 1) : window.parseInt(attr, 10))) % rotator.$items.length], rotator);
+				window.clearInterval(rotator.timerId);
+				hideShow(rotator.$items[rotator.curIndex], rotator.$items[rotator.curIndex = (attr === 'next' ? rotator.curIndex + 1 : (attr === 'prev' ? (rotator.curIndex === 0 ? rotator.$items.length - 1 : rotator.curIndex - 1) : window.parseInt(attr, 10))) % rotator.$items.length], rotator);
 				updateRotatorTimer(rotator);
 			});
 		}
@@ -100,7 +101,7 @@
 					curIndex: 0,
 					interval: interval || 4000,
 					run: run || function () { return true; },
-					preInit: preInit = preInit || function () {},
+					preInit: preInit || function () {},
 					postInit: postInit || function () {}
 				}, showNav));
 				$items.css('pointer-events', 'none')[0].style.pointerEvents = 'auto';
