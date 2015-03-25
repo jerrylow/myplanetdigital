@@ -671,6 +671,15 @@
     window.isTileView = hasLoadedTiles = !$body.hasClass('article');
     window.isScrolling = false;
     window.currentTag = $('#menu').find('li.active').attr('class').split(' ')[0];
+
+    window.rotator($('#testimonial'), '.client-quote', 6000, true, function () {
+        return window.isTileView && window.currentTag === 'home';
+    }, showLanding, function () {
+        if(!window.isTileView || window.currentTag !== 'home') {
+            hideLanding();
+        }
+    });
+
     $window.trigger('deviceCapabilities', [{
         desktopCapable: window.desktopCapable = Math.max(screen.width, screen.height) >= DESKTOP_WIDTH,
         hasTouchEvents: window.hasTouchEvents = 'ontouchstart' in window,
@@ -680,14 +689,7 @@
         bottom: window.pageYOffset + window.pageHeight
     }]);
 
-    var isHidden;
-    window.rotator($('#testimonial'), '.client-quote', 4000, showLanding, function () {
-        if(!window.isTileView || window.currentTag !== 'home') {
-            hideLanding();
-        }
-    });
     window.isWebkitMobileNotIOS = window.hasTouchEvents && !window.isIOS;
-
 
     SPINNER_HEIGHT = window.isIOS ? 25 : SPINNER_HEIGHT;
     pageUrl = pageUrl || '/';

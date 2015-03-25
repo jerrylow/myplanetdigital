@@ -99,11 +99,10 @@
 			curScrollTop = window.pageYOffset;
 			if(window.responsiveState !== 'mobile' && $active.length) {
 				updateOffsets();
-				window.requestAnimationFrame(function () {
-					handleScroll();
-					//setIndicator($active[0], window.isTileView ? '' : 'none');
-				});
 			}
+			window.requestAnimationFrame(function () {
+				handleScroll();
+			});
 		}
 	}
 
@@ -380,6 +379,7 @@
 				}
 			}, 500);
 
+			window.setTimeout(initDesktopMenu, 0);
 			$(window).on('load', initDesktopMenu);
 		} else if (data.hasTouchEvents) {
 			$(initMobileMenu);
