@@ -673,7 +673,7 @@
     window.currentTag = $('#menu').find('li.active').attr('class').split(' ')[0];
 
     window.rotator($('#testimonial'), '.client-quote', 6000, true, function () {
-        return window.isTileView && window.currentTag === 'home';
+        return window.isTileView && window.currentTag === 'home' && (window.responsiveState !== 'mobile' || !window.mobileMenuIsOpen);
     }, showLanding, function () {
         if(!window.isTileView || window.currentTag !== 'home') {
             hideLanding();

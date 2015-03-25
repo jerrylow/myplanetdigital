@@ -113,7 +113,7 @@
 		<script src="<%- @getUrl(@site['menu-ie8'][0]) %>"></script>
 		<![endif]-->
 		<!--[if !IE]> -->
-		<% if @getEnvironment() == 'development': %>
+		<% if @getEnvironment() == 'static': %>
 			<script src="<%- @getUrl(@site.jquery2[0]) %>"></script>
 			<%- @getBlock('scripts').add(@getUrl(@site.scripts)).toHTML() %>
 		<% else: %>
@@ -121,7 +121,7 @@
 		<% end %>
 
 		<!-- <![endif]-->
-		<% if @getEnvironment() != 'development': %>
+		<% if @getEnvironment() != 'static': %>
 		<%- @getBlock('scripts').toHTML() %>
 		<script>
 			(function () {
