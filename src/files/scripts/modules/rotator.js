@@ -26,6 +26,7 @@
 	}
 
 	function updateRotatorTimers() {
+		debugger;
 		var len = rotators.length;
 		while(len--) {
 			updateRotatorTimer(rotators[len]);
@@ -87,7 +88,7 @@
 			window.setTimeout(resize, 3000);
 		});
 		$window.smartresize(resize);
-		$window.on('deviceCapabilities filter article-transition', window.setTimeout.bind(null, updateRotatorTimers, 0));
+		$window.on('deviceCapabilities filter article-transition same-filter', window.setTimeout.bind(null, updateRotatorTimers, 0));
 
 		window.rotator = function($parent, selector, interval, showNav, run, preInit, postInit) {
 			var me, $items;
