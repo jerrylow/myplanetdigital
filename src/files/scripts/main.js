@@ -827,7 +827,7 @@
     $article.on('transitionend webkitTransitionEnd', handleTransitionEnd);
 
     //global scroll handler
-    $window.on('scroll' + (IS_SAFARI ? ' mousewheel' : ''), function() {
+    $window.on('scroll' + (IS_SAFARI && !window.isIOS ? ' mousewheel' : ''), function() {
         if (window.isIOS) {
             return;
         }
