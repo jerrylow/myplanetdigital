@@ -77,7 +77,7 @@
                 while (len--) {
                     scrollable[len].style[overflowScrollingCssProp] = '';
                 }
-                window.setTimeout(function () {
+               // window.setTimeout(function () {
                     len = scrollable.length;
                     while (len--) {
                         scrollable[len].style[overflowScrollingCssProp] = overflowScrollingCssVal;
@@ -86,7 +86,7 @@
                     if(window.afterScrollFixOrientationChange) {
                         window.afterScrollFixOrientationChange(scrollable[len]);
                     }
-                }, 250);
+             //   }, 250);
             }, false);
 
             if(!isAndroid) {
