@@ -39,7 +39,7 @@
 			rotator.$nav = $('<ul class="rotator-nav"><li data-index="prev"></li></ul>');
 		}
 		rotator.$items.each(function(i, item) {
-			($item = $(item))[0]._height = $item.css('position', 'static').height();
+			($item = $(item))[0]._height = $item.css('display', 'block').css('position', 'static').height();
 			if($item[0]._height > maxHeight) {
 				maxHeight = $item[0]._height;
 			}
