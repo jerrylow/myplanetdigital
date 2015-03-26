@@ -33,31 +33,28 @@
 	}
 
 	function initRotator(rotator, addNav) {
-		var maxHeight = -1;
+		var maxHeight = -1, $item;
 		rotator.preInit();
 		if(addNav = addNav && rotator.$items.length > 1) {
 			rotator.$nav = $('<ul class="rotator-nav"><li data-index="prev"></li></ul>');
 		}
 		rotator.$items.each(function(i, item) {
-			var $item = $(item);
-			$item[0]._height = $item.css('position', 'static').height();
+			($item = $(item))[0]._height = $item.css('position', 'static').height();
 			if($item[0]._height > maxHeight) {
 				maxHeight = $item[0]._height;
 			}
-			if(addNav) {
-				rotator.$nav.append($('<li ' + (!i ? 'class="active"' : '') + ' data-index="' + i + '"></li>'));
-			}
-		});
-		rotator.$items.each(function(i, item) {
-			var $item = $(item);
-			$item.css({
+		}).each(function(i, item) {
+			$(item).css({
 				position: 'absolute',
-				top: (maxHeight - item._height) / 2,
+				top: Math.round((maxHeight - item._height) / 2),
 				left: 0,
 				right: 0,
 				bottom: maxHeight - item._height,
 				opacity: i === rotator.curIndex ? 1 : 0
 			});
+			if(addNav) {
+				rotator.$nav.append($('<li ' + (!i ? 'class="active"' : '') + ' data-index="' + i + '"></li>'));
+			}
 		});
 		rotator.$parent.css('height', maxHeight + 'px');
 		if(addNav) {
@@ -90,7 +87,7 @@
 			window.setTimeout(resize, 3000);
 		});
 		$window.smartresize(resize);
-		$window.on('deviceCapabilities filter articles-transition', updateRotatorTimers);
+		$window.on('deviceCapabilities filter article-transition', window.setTimeout.bind(null, updateRotatorTimers, 0));
 
 		window.rotator = function($parent, selector, interval, showNav, run, preInit, postInit) {
 			var me, $items;
