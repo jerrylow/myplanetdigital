@@ -424,21 +424,21 @@ a[href^=tel]{
 			opacity: 0.001;
 			.transition-transform(@transition-time, opacity @transition-time);
 		}
-	}
-	&.ios {
-		#viewport {
-			.transform(none);
-			.showBack();
-			#main, #article {
-				.translate3d(-249px,0,0);
+		&.ios {
+			#viewport {
+				.transform(none);
+				.showBack();
+				#main, #article {
+					.translate3d(-249px,0,0);
+				}
 			}
-		}
-		&.article #viewport {
-			#main {
-				.translate3d(-249px,0,0);
-			}
-			#article {
-				.translate3d(~"calc(-100% - 249px)", 0, 0);
+			&.article #viewport {
+				#main {
+					.translate3d(-249px,0,0);
+				}
+				#article {
+					.translate3d(~"calc(-100% - 249px)", 0, 0);
+				}
 			}
 		}
 	}
