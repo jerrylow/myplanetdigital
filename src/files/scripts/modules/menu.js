@@ -88,7 +88,7 @@
 				handleScroll();
 				setIndicator($item[0]);
 			} else if(window.mobileMenuIsOpen) {
-				window.setTimeout(closeMenu, window.isIOS ? 50 : 0);
+				window.setTimeout(closeMenu, window.isIOS ? (!window.isTileView ? 50 : 200) : 0);
 			}
 		//});
 	}
@@ -99,10 +99,11 @@
 			curScrollTop = window.pageYOffset;
 			if(window.responsiveState !== 'mobile' && $active.length) {
 				updateOffsets();
+				window.requestAnimationFrame(function () {
+					handleScroll();
+					//setIndicator($active[0], window.isTileView ? '' : 'none');
+				});
 			}
-			window.requestAnimationFrame(function () {
-				handleScroll();
-			});
 		}
 	}
 
@@ -204,6 +205,9 @@
 			$window.trigger('menu');
 
 			window.setTimeout(window.requestAnimationFrame.bind(null, function () {
+				if(window.isIOS) {
+					return $body.addClass('menu');
+				}
 				$viewport.css({
 					transform:'translateZ(0)',
 					transition: 'none'
@@ -379,7 +383,6 @@
 				}
 			}, 500);
 
-			window.setTimeout(initDesktopMenu, 0);
 			$(window).on('load', initDesktopMenu);
 		} else if (data.hasTouchEvents) {
 			$(initMobileMenu);
