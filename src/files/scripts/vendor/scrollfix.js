@@ -73,11 +73,12 @@
 
         if(! hasAddedListeners) {
             window.addEventListener('resize', function (event) {
-                var len = scrollable.length;
+                var len = scrollable.length,
+                    finish;
                 while (len--) {
                     scrollable[len].style[overflowScrollingCssProp] = '';
                 }
-               // window.setTimeout(function () {
+               finish = function () {
                     len = scrollable.length;
                     while (len--) {
                         scrollable[len].style[overflowScrollingCssProp] = overflowScrollingCssVal;
@@ -86,7 +87,11 @@
                     if(window.afterScrollFixOrientationChange) {
                         window.afterScrollFixOrientationChange(scrollable[len]);
                     }
-             //   }, 250);
+                };
+                if(isAndroid) {
+                    return window.setTimeout(finish, 250);
+                }
+                finish();
             }, false);
 
             if(!isAndroid) {
