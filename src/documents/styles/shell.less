@@ -425,6 +425,23 @@ a[href^=tel]{
 			.transition-transform(@transition-time, opacity @transition-time);
 		}
 	}
+	&.ios {
+		#viewport {
+			.transform(none);
+			.showBack();
+			#main, #article {
+				.translate3d(-249px,0,0);
+			}
+		}
+		&.article #viewport {
+			#main {
+				.translate3d(-249px,0,0);
+			}
+			#article {
+				.translate3d(~"calc(-100% - 249px)", 0, 0);
+			}
+		}
+	}
 }
 
 @media only screen and (max-width: 767px) {
