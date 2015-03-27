@@ -263,18 +263,17 @@
             wasCancelled,
             top;
 
-        if (window.isIOS) {
-            window.curScrollTop = window.pageYOffset;
-        }
-
         if (aborted = $ajaxer) {
             abortAjax();
+        }
+        if(isIOS) {
+            window.curScrollTop = window.pageYOffset;
         }
 
         cancelTransition = isTransitionEnding;
         isTransitionEnding = false;
 
-        overridePopstateScrollmove = !window.isIOS || window.isIOS8; //ios doesn't mess with the scrollbar during popstate
+        overridePopstateScrollmove = true;
         top = window.curScrollTop;
         wasCancelled = cancelTransition || isTransitioning || aborted;
 
@@ -294,7 +293,7 @@
             fromTiles = true;
 
             if (!wasCancelled) {
-                    tileScrollTop = top;
+                tileScrollTop = top;
             }
             isTransitioning = true;
 
@@ -306,6 +305,12 @@
 
             $window.trigger('article');
 
+
+            $banner.css('opacity', '');
+            $body.addClass('animating').css('height', articleScrollTop + window.pageHeight + 100);
+            if (overridePopstateScrollmove) {
+                window.scroll(0, window.curScrollTop = articleScrollTop);
+            }
             $article.css({
                 transform: !overridePopstateScrollmove ? 'translate3d(0, ' + (top - articleScrollTop) + 'px, 0)' : '',
                 transition: 'none',
@@ -316,12 +321,6 @@
                 transition: 'none',
                 opacity:''
             });
-            $banner.css('opacity', '');
-            $body.addClass('animating');
-            $body.css('height', articleScrollTop + window.pageHeight + 100);
-            if (overridePopstateScrollmove) {
-                window.scroll(0, window.curScrollTop = articleScrollTop);
-            }
 
             window.setTimeout(function() {
                 if (overridePopstateScrollmove && IS_CHROME && !chromeUsedBackLink) {
@@ -400,6 +399,10 @@
                 tileScrollTop = 0;
             }
             $window.trigger('tiles');
+            $body.css('height', tileScrollTop + window.pageHeight + 100);
+            if (overridePopstateScrollmove) {
+                window.scroll(0, window.curScrollTop = tileScrollTop);
+            }
             $main.css({
                 transform: !overridePopstateScrollmove ? 'translate3d(-100%, ' + (top - tileScrollTop) + 'px, 0)' : '',
                 transition: 'none',
@@ -413,10 +416,7 @@
             $banner.css('opacity', '');
 
             $body.addClass('animating');
-            $body.css('height', tileScrollTop + window.pageHeight + 100);
-            if (overridePopstateScrollmove) {
-                window.scroll(0, window.curScrollTop = tileScrollTop);
-            }
+
             window.setTimeout(function() {
                 if (overridePopstateScrollmove && IS_CHROME && !chromeUsedBackLink) {
                     window.scroll(0, window.curScrollTop = tileScrollTop);
@@ -590,7 +590,7 @@
                 }
                 hideLanding();
                 $window.trigger('article-transition-done')
-                window.scroll(0, window.curScrollTop = articleScrollTop + (window.isIOS && ! window.isIOS8 ? 0 : (window.pageYOffset - window.curScrollTop)));
+                window.scroll(0, window.curScrollTop = articleScrollTop + window.pageYOffset - window.curScrollTop);
                 window.setTimeout(window.requestAnimationFrame.bind(null, function() {
                     if (cancelTransition) {
                         return cleanupTransition();
@@ -618,7 +618,7 @@
                 if (cancelTransition) {
                     return cleanupTransition();
                 }
-                window.scroll(0, window.curScrollTop = tileScrollTop + (window.isIOS && ! window.isIOS8 ? 0 : (window.pageYOffset - window.curScrollTop)));
+                window.scroll(0, window.curScrollTop = tileScrollTop + window.pageYOffset - window.curScrollTop);
 
                 window.setTimeout(window.requestAnimationFrame.bind(null, function() {
                     if (cancelTransition) {
@@ -653,14 +653,14 @@
                 transition: 'none'
             });
 
-            if (window.isIOS && !window.isIOS8) {
-                return window.setTimeout(endTransition, 0);
-            }
+           // if (window.isIOS) {
+            //    return window.setTimeout(endTransition, 0);
+            //}
             endTransition();
         };
-        if (window.isIOS  && !window.isIOS8) {
-            return window.setTimeout(window.requestAnimationFrame.bind(null, startTransitionEnd), 0);
-        }
+        //if (window.isIOS) {
+         //   return window.setTimeout(window.requestAnimationFrame.bind(null, startTransitionEnd), 0);
+        //}
         startTransitionEnd();
     }
     //init capabiliites
@@ -684,7 +684,6 @@
         desktopCapable: window.desktopCapable = Math.max(screen.width, screen.height) >= DESKTOP_WIDTH,
         hasTouchEvents: window.hasTouchEvents = 'ontouchstart' in window,
         isIOS: window.isIOS = !!navigator.userAgent.match(/(iPad|iPhone|iPod)/g),
-        isIOS8: window.isIOS8 = !!navigator.userAgent.match(/(iPhone|iPad|iPod)\sOS\s8/g),
         top: window.pageYOffset,
         bottom: window.pageYOffset + window.pageHeight
     }]);
@@ -811,9 +810,9 @@
         }
         if (!isTransitioning && !isTransitionEnding && $ajaxer === null) {
             if (window.isTileView) {
-                tileScrollTop = window.isIOS && ! window.isIOS8 ? window.pageYOffset : window.curScrollTop;
+                tileScrollTop = window.curScrollTop;
             } else {
-                articleScrollTop = window.isIOS && ! window.isIOS8 ? window.pageYOffset : window.curScrollTop;
+                articleScrollTop = window.curScrollTop;
             }
         }
         if (!IS_CHROME || !chromeUsedBackLink) {
@@ -827,7 +826,7 @@
     $article.on('transitionend webkitTransitionEnd', handleTransitionEnd);
 
     //global scroll handler
-    $window.on('scroll' + (IS_SAFARI ? ' mousewheel' : ''), function() {
+    $window.on('scroll' + (IS_SAFARI && !window.isIOS? ' mousewheel' : ''), function() {
         if (window.isIOS) {
             return;
         }
