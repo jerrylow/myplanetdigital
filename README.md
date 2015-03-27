@@ -7,7 +7,8 @@ This badge may not represent reality because docpad cli tools don't return with 
 	     
 	npm install docpad -g  
 	npm install
-	docpad run --env development [-p 9997]
+	docpad generate --env static
+	run an http-server in the /out directory
 
 ## Development with Production Content
 
