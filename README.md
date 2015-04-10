@@ -2,7 +2,18 @@
 
 This badge may not represent reality because docpad cli tools don't return with correct exit codes on errors therefore the build does not break when it should.
 [![Build Status](https://travis-ci.org/myplanetdigital/myplanetdigital.svg?branch=develop)](https://travis-ci.org/myplanetdigital/myplanetdigital)
- 
+
+## Cloning the Repo
+
+Use the `--recursive` switch when cloning this repo for the first time.
+
+For an already cloned repo, or an older Git version, just do:
+
+```
+cd myplanetdigital-content
+git submodule update --init --recursive
+```
+
 ## Development with Dummy Content 
 	     
 	npm install docpad -g  
