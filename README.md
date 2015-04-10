@@ -14,6 +14,25 @@ cd myplanetdigital-content
 git submodule update --init --recursive
 ```
 
+## Some Prep
+
+Create the following symbolic links:
+
+Under src/documents:
+
+```
+ln -s ../../myplanetdigital-content/documents/article article
+ln -s ../../myplanetdigital-content/documents/index.html.md index.html.md
+ln -s ../../myplanetdigital-content/documents/tags tags
+```
+
+Under src/files:
+
+```
+ln -s ../../myplanetdigital-content/files/associated-files associated-files
+ln -s ../../myplanetdigital-content/files/images images
+```
+
 ## Development with Dummy Content 
 	     
 	npm install docpad -g  
