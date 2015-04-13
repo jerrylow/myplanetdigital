@@ -26,7 +26,8 @@
     "docpad-plugin-moment": "~2.0.2",
     "docpad-plugin-menu": "~2.1.0",
     "docpad-plugin-services": "~2.5.0",
-    "docpad-plugin-feedr": "~2.1.0"
+    "docpad-plugin-feedr": "~2.1.0",
+    "grunt-spritesmith": "^4.5.1"
   },
   "main": "node_modules/docpad/bin/docpad-server",
   "scripts": {},
@@ -35,8 +36,9 @@
     "docpad-plugin-marked": "~2.2.0",
     "grunt": "~0.4.2",
     "grunt-git": "~0.2.6",
+    "grunt-spritesmith": "^4.5.1",
     "grunt-contrib-copy": "~0.5.0",
     "grunt-contrib-clean": "~0.5.0"
   }
 }
- 
+

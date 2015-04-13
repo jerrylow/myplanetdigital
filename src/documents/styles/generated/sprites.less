@@ -1,0 +1,610 @@
+/*
+LESS variables are information about icon's compiled state, stored under its original file name
+
+.icon-home {
+  width: @icon-home-width;
+}
+
+The large array-like variables contain all information about a single icon
+@icon-home: x y offset_x offset_y width height total_width total_height image_path name;
+
+At the bottom of this section, we provide information about the spritesheet itself
+@spritesheet: width height image @spritesheet-sprites;
+*/
+@chernihiv-white-name: chernihiv-white;
+@chernihiv-white-x: 174px;
+@chernihiv-white-y: 0px;
+@chernihiv-white-offset-x: -174px;
+@chernihiv-white-offset-y: 0px;
+@chernihiv-white-width: 39px;
+@chernihiv-white-height: 53px;
+@chernihiv-white-total-width: 278px;
+@chernihiv-white-total-height: 210px;
+@chernihiv-white-image: '../images/spritesheet.png';
+@chernihiv-white: 174px 0px -174px 0px 39px 53px 278px 210px '../images/spritesheet.png' chernihiv-white;
+@chernihiv-name: chernihiv;
+@chernihiv-x: 0px;
+@chernihiv-y: 115px;
+@chernihiv-offset-x: 0px;
+@chernihiv-offset-y: -115px;
+@chernihiv-width: 39px;
+@chernihiv-height: 53px;
+@chernihiv-total-width: 278px;
+@chernihiv-total-height: 210px;
+@chernihiv-image: '../images/spritesheet.png';
+@chernihiv: 0px 115px 0px -115px 39px 53px 278px 210px '../images/spritesheet.png' chernihiv;
+@mountains-white-name: mountains-white;
+@mountains-white-x: 60px;
+@mountains-white-y: 61px;
+@mountains-white-offset-x: -60px;
+@mountains-white-offset-y: -61px;
+@mountains-white-width: 45px;
+@mountains-white-height: 36px;
+@mountains-white-total-width: 278px;
+@mountains-white-total-height: 210px;
+@mountains-white-image: '../images/spritesheet.png';
+@mountains-white: 60px 61px -60px -61px 45px 36px 278px 210px '../images/spritesheet.png' mountains-white;
+@mountains-name: mountains;
+@mountains-x: 115px;
+@mountains-y: 61px;
+@mountains-offset-x: -115px;
+@mountains-offset-y: -61px;
+@mountains-width: 45px;
+@mountains-height: 36px;
+@mountains-total-width: 278px;
+@mountains-total-height: 210px;
+@mountains-image: '../images/spritesheet.png';
+@mountains: 115px 61px -115px -61px 45px 36px 278px 210px '../images/spritesheet.png' mountains;
+@pizza-white-name: pizza-white;
+@pizza-white-x: 114px;
+@pizza-white-y: 0px;
+@pizza-white-offset-x: -114px;
+@pizza-white-offset-y: 0px;
+@pizza-white-width: 50px;
+@pizza-white-height: 44px;
+@pizza-white-total-width: 278px;
+@pizza-white-total-height: 210px;
+@pizza-white-image: '../images/spritesheet.png';
+@pizza-white: 114px 0px -114px 0px 50px 44px 278px 210px '../images/spritesheet.png' pizza-white;
+@pizza-name: pizza;
+@pizza-x: 0px;
+@pizza-y: 61px;
+@pizza-offset-x: 0px;
+@pizza-offset-y: -61px;
+@pizza-width: 50px;
+@pizza-height: 44px;
+@pizza-total-width: 278px;
+@pizza-total-height: 210px;
+@pizza-image: '../images/spritesheet.png';
+@pizza: 0px 61px 0px -61px 50px 44px 278px 210px '../images/spritesheet.png' pizza;
+@sm-dribbble-white-name: sm_dribbble-white;
+@sm-dribbble-white-x: 0px;
+@sm-dribbble-white-y: 178px;
+@sm-dribbble-white-offset-x: 0px;
+@sm-dribbble-white-offset-y: -178px;
+@sm-dribbble-white-width: 32px;
+@sm-dribbble-white-height: 32px;
+@sm-dribbble-white-total-width: 278px;
+@sm-dribbble-white-total-height: 210px;
+@sm-dribbble-white-image: '../images/spritesheet.png';
+@sm-dribbble-white: 0px 178px 0px -178px 32px 32px 278px 210px '../images/spritesheet.png' sm_dribbble-white;
+@sm-dribbble-name: sm_dribbble;
+@sm-dribbble-x: 42px;
+@sm-dribbble-y: 178px;
+@sm-dribbble-offset-x: -42px;
+@sm-dribbble-offset-y: -178px;
+@sm-dribbble-width: 32px;
+@sm-dribbble-height: 32px;
+@sm-dribbble-total-width: 278px;
+@sm-dribbble-total-height: 210px;
+@sm-dribbble-image: '../images/spritesheet.png';
+@sm-dribbble: 42px 178px -42px -178px 32px 32px 278px 210px '../images/spritesheet.png' sm_dribbble;
+@sm-drupal-white-name: sm_drupal-white;
+@sm-drupal-white-x: 223px;
+@sm-drupal-white-y: 130px;
+@sm-drupal-white-offset-x: -223px;
+@sm-drupal-white-offset-y: -130px;
+@sm-drupal-white-width: 26px;
+@sm-drupal-white-height: 34px;
+@sm-drupal-white-total-width: 278px;
+@sm-drupal-white-total-height: 210px;
+@sm-drupal-white-image: '../images/spritesheet.png';
+@sm-drupal-white: 223px 130px -223px -130px 26px 34px 278px 210px '../images/spritesheet.png' sm_drupal-white;
+@sm-drupal-name: sm_drupal;
+@sm-drupal-x: 223px;
+@sm-drupal-y: 86px;
+@sm-drupal-offset-x: -223px;
+@sm-drupal-offset-y: -86px;
+@sm-drupal-width: 26px;
+@sm-drupal-height: 34px;
+@sm-drupal-total-width: 278px;
+@sm-drupal-total-height: 210px;
+@sm-drupal-image: '../images/spritesheet.png';
+@sm-drupal: 223px 86px -223px -86px 26px 34px 278px 210px '../images/spritesheet.png' sm_drupal;
+@sm-facebook-white-name: sm_facebook-white;
+@sm-facebook-white-x: 261px;
+@sm-facebook-white-y: 0px;
+@sm-facebook-white-offset-x: -261px;
+@sm-facebook-white-offset-y: 0px;
+@sm-facebook-white-width: 17px;
+@sm-facebook-white-height: 32px;
+@sm-facebook-white-total-width: 278px;
+@sm-facebook-white-total-height: 210px;
+@sm-facebook-white-image: '../images/spritesheet.png';
+@sm-facebook-white: 261px 0px -261px 0px 17px 32px 278px 210px '../images/spritesheet.png' sm_facebook-white;
+@sm-facebook-name: sm_facebook;
+@sm-facebook-x: 223px;
+@sm-facebook-y: 174px;
+@sm-facebook-offset-x: -223px;
+@sm-facebook-offset-y: -174px;
+@sm-facebook-width: 17px;
+@sm-facebook-height: 32px;
+@sm-facebook-total-width: 278px;
+@sm-facebook-total-height: 210px;
+@sm-facebook-image: '../images/spritesheet.png';
+@sm-facebook: 223px 174px -223px -174px 17px 32px 278px 210px '../images/spritesheet.png' sm_facebook;
+@sm-glassdoor-white-name: sm_glassdoor-white;
+@sm-glassdoor-white-x: 223px;
+@sm-glassdoor-white-y: 0px;
+@sm-glassdoor-white-offset-x: -223px;
+@sm-glassdoor-white-offset-y: 0px;
+@sm-glassdoor-white-width: 28px;
+@sm-glassdoor-white-height: 33px;
+@sm-glassdoor-white-total-width: 278px;
+@sm-glassdoor-white-total-height: 210px;
+@sm-glassdoor-white-image: '../images/spritesheet.png';
+@sm-glassdoor-white: 223px 0px -223px 0px 28px 33px 278px 210px '../images/spritesheet.png' sm_glassdoor-white;
+@sm-glassdoor-name: sm_glassdoor;
+@sm-glassdoor-x: 223px;
+@sm-glassdoor-y: 43px;
+@sm-glassdoor-offset-x: -223px;
+@sm-glassdoor-offset-y: -43px;
+@sm-glassdoor-width: 28px;
+@sm-glassdoor-height: 33px;
+@sm-glassdoor-total-width: 278px;
+@sm-glassdoor-total-height: 210px;
+@sm-glassdoor-image: '../images/spritesheet.png';
+@sm-glassdoor: 223px 43px -223px -43px 28px 33px 278px 210px '../images/spritesheet.png' sm_glassdoor;
+@sm-linkedin-white-name: sm_linkedin-white;
+@sm-linkedin-white-x: 84px;
+@sm-linkedin-white-y: 178px;
+@sm-linkedin-white-offset-x: -84px;
+@sm-linkedin-white-offset-y: -178px;
+@sm-linkedin-white-width: 32px;
+@sm-linkedin-white-height: 31px;
+@sm-linkedin-white-total-width: 278px;
+@sm-linkedin-white-total-height: 210px;
+@sm-linkedin-white-image: '../images/spritesheet.png';
+@sm-linkedin-white: 84px 178px -84px -178px 32px 31px 278px 210px '../images/spritesheet.png' sm_linkedin-white;
+@sm-linkedin-name: sm_linkedin;
+@sm-linkedin-x: 126px;
+@sm-linkedin-y: 178px;
+@sm-linkedin-offset-x: -126px;
+@sm-linkedin-offset-y: -178px;
+@sm-linkedin-width: 32px;
+@sm-linkedin-height: 31px;
+@sm-linkedin-total-width: 278px;
+@sm-linkedin-total-height: 210px;
+@sm-linkedin-image: '../images/spritesheet.png';
+@sm-linkedin: 126px 178px -126px -178px 32px 31px 278px 210px '../images/spritesheet.png' sm_linkedin;
+@sm-twitter-white-name: sm_twitter-white;
+@sm-twitter-white-x: 49px;
+@sm-twitter-white-y: 115px;
+@sm-twitter-white-offset-x: -49px;
+@sm-twitter-white-offset-y: -115px;
+@sm-twitter-white-width: 35px;
+@sm-twitter-white-height: 30px;
+@sm-twitter-white-total-width: 278px;
+@sm-twitter-white-total-height: 210px;
+@sm-twitter-white-image: '../images/spritesheet.png';
+@sm-twitter-white: 49px 115px -49px -115px 35px 30px 278px 210px '../images/spritesheet.png' sm_twitter-white;
+@sm-twitter-name: sm_twitter;
+@sm-twitter-x: 174px;
+@sm-twitter-y: 63px;
+@sm-twitter-offset-x: -174px;
+@sm-twitter-offset-y: -63px;
+@sm-twitter-width: 35px;
+@sm-twitter-height: 30px;
+@sm-twitter-total-width: 278px;
+@sm-twitter-total-height: 210px;
+@sm-twitter-image: '../images/spritesheet.png';
+@sm-twitter: 174px 63px -174px -63px 35px 30px 278px 210px '../images/spritesheet.png' sm_twitter;
+@toronto-white-name: toronto-white;
+@toronto-white-x: 57px;
+@toronto-white-y: 0px;
+@toronto-white-offset-x: -57px;
+@toronto-white-offset-y: 0px;
+@toronto-white-width: 47px;
+@toronto-white-height: 51px;
+@toronto-white-total-width: 278px;
+@toronto-white-total-height: 210px;
+@toronto-white-image: '../images/spritesheet.png';
+@toronto-white: 57px 0px -57px 0px 47px 51px 278px 210px '../images/spritesheet.png' toronto-white;
+@toronto-name: toronto;
+@toronto-x: 0px;
+@toronto-y: 0px;
+@toronto-offset-x: 0px;
+@toronto-offset-y: 0px;
+@toronto-width: 47px;
+@toronto-height: 51px;
+@toronto-total-width: 278px;
+@toronto-total-height: 210px;
+@toronto-image: '../images/spritesheet.png';
+@toronto: 0px 0px 0px 0px 47px 51px 278px 210px '../images/spritesheet.png' toronto;
+@chernihiv-2x-name: chernihiv-2x;
+@chernihiv-2x-x: 348px;
+@chernihiv-2x-y: 0px;
+@chernihiv-2x-offset-x: -348px;
+@chernihiv-2x-offset-y: 0px;
+@chernihiv-2x-width: 78px;
+@chernihiv-2x-height: 106px;
+@chernihiv-2x-total-width: 556px;
+@chernihiv-2x-total-height: 420px;
+@chernihiv-2x-image: '../images/spritesheet-2x.png';
+@chernihiv-2x: 348px 0px -348px 0px 78px 106px 556px 420px '../images/spritesheet-2x.png' chernihiv-2x;
+@chernihiv-white-2x-name: chernihiv-white-2x;
+@chernihiv-white-2x-x: 0px;
+@chernihiv-white-2x-y: 230px;
+@chernihiv-white-2x-offset-x: 0px;
+@chernihiv-white-2x-offset-y: -230px;
+@chernihiv-white-2x-width: 78px;
+@chernihiv-white-2x-height: 106px;
+@chernihiv-white-2x-total-width: 556px;
+@chernihiv-white-2x-total-height: 420px;
+@chernihiv-white-2x-image: '../images/spritesheet-2x.png';
+@chernihiv-white-2x: 0px 230px 0px -230px 78px 106px 556px 420px '../images/spritesheet-2x.png' chernihiv-white-2x;
+@mountains-2x-name: mountains-2x;
+@mountains-2x-x: 120px;
+@mountains-2x-y: 122px;
+@mountains-2x-offset-x: -120px;
+@mountains-2x-offset-y: -122px;
+@mountains-2x-width: 90px;
+@mountains-2x-height: 72px;
+@mountains-2x-total-width: 556px;
+@mountains-2x-total-height: 420px;
+@mountains-2x-image: '../images/spritesheet-2x.png';
+@mountains-2x: 120px 122px -120px -122px 90px 72px 556px 420px '../images/spritesheet-2x.png' mountains-2x;
+@mountains-white-2x-name: mountains-white-2x;
+@mountains-white-2x-x: 230px;
+@mountains-white-2x-y: 122px;
+@mountains-white-2x-offset-x: -230px;
+@mountains-white-2x-offset-y: -122px;
+@mountains-white-2x-width: 90px;
+@mountains-white-2x-height: 72px;
+@mountains-white-2x-total-width: 556px;
+@mountains-white-2x-total-height: 420px;
+@mountains-white-2x-image: '../images/spritesheet-2x.png';
+@mountains-white-2x: 230px 122px -230px -122px 90px 72px 556px 420px '../images/spritesheet-2x.png' mountains-white-2x;
+@pizza-2x-name: pizza-2x;
+@pizza-2x-x: 228px;
+@pizza-2x-y: 0px;
+@pizza-2x-offset-x: -228px;
+@pizza-2x-offset-y: 0px;
+@pizza-2x-width: 100px;
+@pizza-2x-height: 88px;
+@pizza-2x-total-width: 556px;
+@pizza-2x-total-height: 420px;
+@pizza-2x-image: '../images/spritesheet-2x.png';
+@pizza-2x: 228px 0px -228px 0px 100px 88px 556px 420px '../images/spritesheet-2x.png' pizza-2x;
+@pizza-white-2x-name: pizza-white-2x;
+@pizza-white-2x-x: 0px;
+@pizza-white-2x-y: 122px;
+@pizza-white-2x-offset-x: 0px;
+@pizza-white-2x-offset-y: -122px;
+@pizza-white-2x-width: 100px;
+@pizza-white-2x-height: 88px;
+@pizza-white-2x-total-width: 556px;
+@pizza-white-2x-total-height: 420px;
+@pizza-white-2x-image: '../images/spritesheet-2x.png';
+@pizza-white-2x: 0px 122px 0px -122px 100px 88px 556px 420px '../images/spritesheet-2x.png' pizza-white-2x;
+@sm-dribbble-2x-name: sm_dribbble-2x;
+@sm-dribbble-2x-x: 0px;
+@sm-dribbble-2x-y: 356px;
+@sm-dribbble-2x-offset-x: 0px;
+@sm-dribbble-2x-offset-y: -356px;
+@sm-dribbble-2x-width: 64px;
+@sm-dribbble-2x-height: 64px;
+@sm-dribbble-2x-total-width: 556px;
+@sm-dribbble-2x-total-height: 420px;
+@sm-dribbble-2x-image: '../images/spritesheet-2x.png';
+@sm-dribbble-2x: 0px 356px 0px -356px 64px 64px 556px 420px '../images/spritesheet-2x.png' sm_dribbble-2x;
+@sm-dribbble-white-2x-name: sm_dribbble-white-2x;
+@sm-dribbble-white-2x-x: 84px;
+@sm-dribbble-white-2x-y: 356px;
+@sm-dribbble-white-2x-offset-x: -84px;
+@sm-dribbble-white-2x-offset-y: -356px;
+@sm-dribbble-white-2x-width: 64px;
+@sm-dribbble-white-2x-height: 64px;
+@sm-dribbble-white-2x-total-width: 556px;
+@sm-dribbble-white-2x-total-height: 420px;
+@sm-dribbble-white-2x-image: '../images/spritesheet-2x.png';
+@sm-dribbble-white-2x: 84px 356px -84px -356px 64px 64px 556px 420px '../images/spritesheet-2x.png' sm_dribbble-white-2x;
+@sm-drupal-2x-name: sm_drupal-2x;
+@sm-drupal-2x-x: 446px;
+@sm-drupal-2x-y: 260px;
+@sm-drupal-2x-offset-x: -446px;
+@sm-drupal-2x-offset-y: -260px;
+@sm-drupal-2x-width: 52px;
+@sm-drupal-2x-height: 68px;
+@sm-drupal-2x-total-width: 556px;
+@sm-drupal-2x-total-height: 420px;
+@sm-drupal-2x-image: '../images/spritesheet-2x.png';
+@sm-drupal-2x: 446px 260px -446px -260px 52px 68px 556px 420px '../images/spritesheet-2x.png' sm_drupal-2x;
+@sm-drupal-white-2x-name: sm_drupal-white-2x;
+@sm-drupal-white-2x-x: 446px;
+@sm-drupal-white-2x-y: 172px;
+@sm-drupal-white-2x-offset-x: -446px;
+@sm-drupal-white-2x-offset-y: -172px;
+@sm-drupal-white-2x-width: 52px;
+@sm-drupal-white-2x-height: 68px;
+@sm-drupal-white-2x-total-width: 556px;
+@sm-drupal-white-2x-total-height: 420px;
+@sm-drupal-white-2x-image: '../images/spritesheet-2x.png';
+@sm-drupal-white-2x: 446px 172px -446px -172px 52px 68px 556px 420px '../images/spritesheet-2x.png' sm_drupal-white-2x;
+@sm-facebook-2x-name: sm_facebook-2x;
+@sm-facebook-2x-x: 522px;
+@sm-facebook-2x-y: 0px;
+@sm-facebook-2x-offset-x: -522px;
+@sm-facebook-2x-offset-y: 0px;
+@sm-facebook-2x-width: 34px;
+@sm-facebook-2x-height: 64px;
+@sm-facebook-2x-total-width: 556px;
+@sm-facebook-2x-total-height: 420px;
+@sm-facebook-2x-image: '../images/spritesheet-2x.png';
+@sm-facebook-2x: 522px 0px -522px 0px 34px 64px 556px 420px '../images/spritesheet-2x.png' sm_facebook-2x;
+@sm-facebook-white-2x-name: sm_facebook-white-2x;
+@sm-facebook-white-2x-x: 446px;
+@sm-facebook-white-2x-y: 348px;
+@sm-facebook-white-2x-offset-x: -446px;
+@sm-facebook-white-2x-offset-y: -348px;
+@sm-facebook-white-2x-width: 34px;
+@sm-facebook-white-2x-height: 64px;
+@sm-facebook-white-2x-total-width: 556px;
+@sm-facebook-white-2x-total-height: 420px;
+@sm-facebook-white-2x-image: '../images/spritesheet-2x.png';
+@sm-facebook-white-2x: 446px 348px -446px -348px 34px 64px 556px 420px '../images/spritesheet-2x.png' sm_facebook-white-2x;
+@sm-glassdoor-2x-name: sm_glassdoor-2x;
+@sm-glassdoor-2x-x: 446px;
+@sm-glassdoor-2x-y: 0px;
+@sm-glassdoor-2x-offset-x: -446px;
+@sm-glassdoor-2x-offset-y: 0px;
+@sm-glassdoor-2x-width: 56px;
+@sm-glassdoor-2x-height: 66px;
+@sm-glassdoor-2x-total-width: 556px;
+@sm-glassdoor-2x-total-height: 420px;
+@sm-glassdoor-2x-image: '../images/spritesheet-2x.png';
+@sm-glassdoor-2x: 446px 0px -446px 0px 56px 66px 556px 420px '../images/spritesheet-2x.png' sm_glassdoor-2x;
+@sm-glassdoor-white-2x-name: sm_glassdoor-white-2x;
+@sm-glassdoor-white-2x-x: 446px;
+@sm-glassdoor-white-2x-y: 86px;
+@sm-glassdoor-white-2x-offset-x: -446px;
+@sm-glassdoor-white-2x-offset-y: -86px;
+@sm-glassdoor-white-2x-width: 56px;
+@sm-glassdoor-white-2x-height: 66px;
+@sm-glassdoor-white-2x-total-width: 556px;
+@sm-glassdoor-white-2x-total-height: 420px;
+@sm-glassdoor-white-2x-image: '../images/spritesheet-2x.png';
+@sm-glassdoor-white-2x: 446px 86px -446px -86px 56px 66px 556px 420px '../images/spritesheet-2x.png' sm_glassdoor-white-2x;
+@sm-linkedin-2x-name: sm_linkedin-2x;
+@sm-linkedin-2x-x: 168px;
+@sm-linkedin-2x-y: 356px;
+@sm-linkedin-2x-offset-x: -168px;
+@sm-linkedin-2x-offset-y: -356px;
+@sm-linkedin-2x-width: 64px;
+@sm-linkedin-2x-height: 62px;
+@sm-linkedin-2x-total-width: 556px;
+@sm-linkedin-2x-total-height: 420px;
+@sm-linkedin-2x-image: '../images/spritesheet-2x.png';
+@sm-linkedin-2x: 168px 356px -168px -356px 64px 62px 556px 420px '../images/spritesheet-2x.png' sm_linkedin-2x;
+@sm-linkedin-white-2x-name: sm_linkedin-white-2x;
+@sm-linkedin-white-2x-x: 252px;
+@sm-linkedin-white-2x-y: 356px;
+@sm-linkedin-white-2x-offset-x: -252px;
+@sm-linkedin-white-2x-offset-y: -356px;
+@sm-linkedin-white-2x-width: 64px;
+@sm-linkedin-white-2x-height: 62px;
+@sm-linkedin-white-2x-total-width: 556px;
+@sm-linkedin-white-2x-total-height: 420px;
+@sm-linkedin-white-2x-image: '../images/spritesheet-2x.png';
+@sm-linkedin-white-2x: 252px 356px -252px -356px 64px 62px 556px 420px '../images/spritesheet-2x.png' sm_linkedin-white-2x;
+@sm-twitter-2x-name: sm_twitter-2x;
+@sm-twitter-2x-x: 98px;
+@sm-twitter-2x-y: 230px;
+@sm-twitter-2x-offset-x: -98px;
+@sm-twitter-2x-offset-y: -230px;
+@sm-twitter-2x-width: 70px;
+@sm-twitter-2x-height: 60px;
+@sm-twitter-2x-total-width: 556px;
+@sm-twitter-2x-total-height: 420px;
+@sm-twitter-2x-image: '../images/spritesheet-2x.png';
+@sm-twitter-2x: 98px 230px -98px -230px 70px 60px 556px 420px '../images/spritesheet-2x.png' sm_twitter-2x;
+@sm-twitter-white-2x-name: sm_twitter-white-2x;
+@sm-twitter-white-2x-x: 348px;
+@sm-twitter-white-2x-y: 126px;
+@sm-twitter-white-2x-offset-x: -348px;
+@sm-twitter-white-2x-offset-y: -126px;
+@sm-twitter-white-2x-width: 70px;
+@sm-twitter-white-2x-height: 60px;
+@sm-twitter-white-2x-total-width: 556px;
+@sm-twitter-white-2x-total-height: 420px;
+@sm-twitter-white-2x-image: '../images/spritesheet-2x.png';
+@sm-twitter-white-2x: 348px 126px -348px -126px 70px 60px 556px 420px '../images/spritesheet-2x.png' sm_twitter-white-2x;
+@toronto-2x-name: toronto-2x;
+@toronto-2x-x: 114px;
+@toronto-2x-y: 0px;
+@toronto-2x-offset-x: -114px;
+@toronto-2x-offset-y: 0px;
+@toronto-2x-width: 94px;
+@toronto-2x-height: 102px;
+@toronto-2x-total-width: 556px;
+@toronto-2x-total-height: 420px;
+@toronto-2x-image: '../images/spritesheet-2x.png';
+@toronto-2x: 114px 0px -114px 0px 94px 102px 556px 420px '../images/spritesheet-2x.png' toronto-2x;
+@toronto-white-2x-name: toronto-white-2x;
+@toronto-white-2x-x: 0px;
+@toronto-white-2x-y: 0px;
+@toronto-white-2x-offset-x: 0px;
+@toronto-white-2x-offset-y: 0px;
+@toronto-white-2x-width: 94px;
+@toronto-white-2x-height: 102px;
+@toronto-white-2x-total-width: 556px;
+@toronto-white-2x-total-height: 420px;
+@toronto-white-2x-image: '../images/spritesheet-2x.png';
+@toronto-white-2x: 0px 0px 0px 0px 94px 102px 556px 420px '../images/spritesheet-2x.png' toronto-white-2x;
+@spritesheet-width: 278px;
+@spritesheet-height: 210px;
+@spritesheet-image: '../images/spritesheet.png';
+@spritesheet-sprites: @chernihiv-white @chernihiv @mountains-white @mountains @pizza-white @pizza @sm-dribbble-white @sm-dribbble @sm-drupal-white @sm-drupal @sm-facebook-white @sm-facebook @sm-glassdoor-white @sm-glassdoor @sm-linkedin-white @sm-linkedin @sm-twitter-white @sm-twitter @toronto-white @toronto;
+@spritesheet: 278px 210px '../images/spritesheet.png' @spritesheet-sprites;
+@retina-spritesheet-width: 556px;
+@retina-spritesheet-height: 420px;
+@retina-spritesheet-image: '../images/spritesheet-2x.png';
+@retina-spritesheet-sprites: @chernihiv-2x @chernihiv-white-2x @mountains-2x @mountains-white-2x @pizza-2x @pizza-white-2x @sm-dribbble-2x @sm-dribbble-white-2x @sm-drupal-2x @sm-drupal-white-2x @sm-facebook-2x @sm-facebook-white-2x @sm-glassdoor-2x @sm-glassdoor-white-2x @sm-linkedin-2x @sm-linkedin-white-2x @sm-twitter-2x @sm-twitter-white-2x @toronto-2x @toronto-white-2x;
+@retina-spritesheet: 556px 420px '../images/spritesheet-2x.png' @retina-spritesheet-sprites;
+
+/*
+These "retina group" variables are mappings for the naming and pairing of normal and retina sprites.
+
+The list formatted variables are intended for mixins like `retina-sprite` and `retina-sprites`.
+*/
+@chernihiv-white-group-name: chernihiv-white;
+@chernihiv-white-group: chernihiv-white @chernihiv-white @chernihiv-2x;
+@chernihiv-group-name: chernihiv;
+@chernihiv-group: chernihiv @chernihiv @chernihiv-white-2x;
+@mountains-white-group-name: mountains-white;
+@mountains-white-group: mountains-white @mountains-white @mountains-2x;
+@mountains-group-name: mountains;
+@mountains-group: mountains @mountains @mountains-white-2x;
+@pizza-white-group-name: pizza-white;
+@pizza-white-group: pizza-white @pizza-white @pizza-2x;
+@pizza-group-name: pizza;
+@pizza-group: pizza @pizza @pizza-white-2x;
+@sm-dribbble-white-group-name: sm_dribbble-white;
+@sm-dribbble-white-group: sm_dribbble-white @sm-dribbble-white @sm-dribbble-2x;
+@sm-dribbble-group-name: sm_dribbble;
+@sm-dribbble-group: sm_dribbble @sm-dribbble @sm-dribbble-white-2x;
+@sm-drupal-white-group-name: sm_drupal-white;
+@sm-drupal-white-group: sm_drupal-white @sm-drupal-white @sm-drupal-2x;
+@sm-drupal-group-name: sm_drupal;
+@sm-drupal-group: sm_drupal @sm-drupal @sm-drupal-white-2x;
+@sm-facebook-white-group-name: sm_facebook-white;
+@sm-facebook-white-group: sm_facebook-white @sm-facebook-white @sm-facebook-2x;
+@sm-facebook-group-name: sm_facebook;
+@sm-facebook-group: sm_facebook @sm-facebook @sm-facebook-white-2x;
+@sm-glassdoor-white-group-name: sm_glassdoor-white;
+@sm-glassdoor-white-group: sm_glassdoor-white @sm-glassdoor-white @sm-glassdoor-2x;
+@sm-glassdoor-group-name: sm_glassdoor;
+@sm-glassdoor-group: sm_glassdoor @sm-glassdoor @sm-glassdoor-white-2x;
+@sm-linkedin-white-group-name: sm_linkedin-white;
+@sm-linkedin-white-group: sm_linkedin-white @sm-linkedin-white @sm-linkedin-2x;
+@sm-linkedin-group-name: sm_linkedin;
+@sm-linkedin-group: sm_linkedin @sm-linkedin @sm-linkedin-white-2x;
+@sm-twitter-white-group-name: sm_twitter-white;
+@sm-twitter-white-group: sm_twitter-white @sm-twitter-white @sm-twitter-2x;
+@sm-twitter-group-name: sm_twitter;
+@sm-twitter-group: sm_twitter @sm-twitter @sm-twitter-white-2x;
+@toronto-white-group-name: toronto-white;
+@toronto-white-group: toronto-white @toronto-white @toronto-2x;
+@toronto-group-name: toronto;
+@toronto-group: toronto @toronto @toronto-white-2x;
+@retina-groups: @chernihiv-white-group @chernihiv-group @mountains-white-group @mountains-group @pizza-white-group @pizza-group @sm-dribbble-white-group @sm-dribbble-group @sm-drupal-white-group @sm-drupal-group @sm-facebook-white-group @sm-facebook-group @sm-glassdoor-white-group @sm-glassdoor-group @sm-linkedin-white-group @sm-linkedin-group @sm-twitter-white-group @sm-twitter-group @toronto-white-group @toronto-group;
+
+/*
+The provided classes are intended to be used with the array-like variables
+
+.icon-home {
+  .sprite-width(@icon-home);
+}
+.icon-email {
+  .sprite(@icon-email);
+}
+*/
+.sprite-width(@sprite) {
+  width: extract(@sprite, 5);
+}
+
+.sprite-height(@sprite) {
+  height: extract(@sprite, 6);
+}
+
+.sprite-position(@sprite) {
+  @sprite-offset-x: extract(@sprite, 3);
+  @sprite-offset-y: extract(@sprite, 4);
+  background-position: @sprite-offset-x @sprite-offset-y;
+}
+
+.sprite-image(@sprite) {
+  @sprite-image: extract(@sprite, 9);
+  @sprite-image-bare: ~`"@{sprite-image}".slice(1, -1)`;
+  background-image: url(@sprite-image-bare);
+}
+
+.sprite(@sprite) {
+  .sprite-image(@sprite);
+  .sprite-position(@sprite);
+  .sprite-width(@sprite);
+  .sprite-height(@sprite);
+}
+
+/*
+The `retina-sprite` class sets up rules and a media query for a sprite/retina sprite.
+  It should be used with a "retina group" variable.
+
+The media query is from CSS Tricks: https://css-tricks.com/snippets/css/retina-display-media-query/
+
+@icon-home-group: 'icon-home' @icon-home @icon-home-2x;
+
+.icon-home {
+  .retina-sprite(@icon-home-group);
+}
+*/
+.sprite-background-size(@sprite) {
+  @sprite-total-width: extract(@sprite, 7);
+  @sprite-total-height: extract(@sprite, 8);
+  background-size: @sprite-total-width @sprite-total-height;
+}
+
+.retina-sprite(@retina-group) {
+  @normal-sprite: extract(@retina-group, 2);
+  @retina-sprite: extract(@retina-group, 3);
+  .sprite(@normal-sprite);
+
+  @media (-webkit-min-device-pixel-ratio: 2),
+         (min-resolution: 192dpi) {
+    .sprite-image(@retina-sprite);
+    .sprite-background-size(@normal-sprite);
+  }
+}
+
+/*
+The `.sprites` mixin generates identical output to the CSS template
+  but can be overridden inside of LESS
+
+This must be run when you have at least 2 sprites.
+  If run with a single sprite, then there will be reference errors.
+
+.sprites(@spritesheet-sprites);
+*/
+.sprites(@sprites, @i: 1) when (@i <= length(@sprites)) {
+  @sprite: extract(@sprites, @i);
+  @sprite-name: extract(@sprite, 10);
+  .@{sprite-name} {
+    .sprite(@sprite);
+  }
+  .sprites(@sprites, @i + 1);
+}
+
+/*
+The `.retina-sprites` mixin generates a CSS rule and media query for retina groups
+  This yields the same output as CSS retina template but can be overridden in LESS
+
+.retina-sprites(@retina-groups);
+*/
+.retina-sprites(@retina-groups, @i: 1) when (@i <= length(@retina-groups)) {
+  @retina-group: extract(@retina-groups, @i);
+  @sprite-name: extract(@retina-group, 1);
+  .@{sprite-name} {
+    .retina-sprite(@retina-group);
+  }
+  .retina-sprites(@retina-groups, @i + 1);
+}

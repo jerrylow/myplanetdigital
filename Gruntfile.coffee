@@ -11,7 +11,7 @@ module.exports = (grunt) ->
 	grunt.initConfig
 		# Retrieve any information from package.json.
 		pkg: grunt.file.readJSON("package.json")
-	
+
 		# Clone the content repository.
 		gitclone:
 			content:
@@ -48,11 +48,29 @@ module.exports = (grunt) ->
 					src: 'src'
 				]
 
-		# @todo Add S3 deploy
+		sprite:
+			options:
+				algorithm: 'binary-tree'
+			build:
+				src: 'src/files/images/sprites/*.png'
+				retinaSrcFilter: 'src/files/images/sprites/*-2x.png'
+				retinaDest: 'src/files/images/spritesheet-2x.png'
+				retinaImgPath: '../images/spritesheet-2x.png'
+				dest: 'src/files/images/spritesheet.png'
+				# cssTemplate: 'src/documents/spritesmith-less.template.mustache'
+				destCss: 'src/documents/styles/generated/sprites.less'
+				imgPath: '../images/spritesheet.png'
+				padding: 10
+
+	# @todo Add S3 deploy
 
 	grunt.loadNpmTasks 'grunt-git'
 	grunt.loadNpmTasks 'grunt-contrib-copy'
 	grunt.loadNpmTasks 'grunt-contrib-clean'
+	grunt.loadNpmTasks 'grunt-spritesmith'
+
+	# Generate spritesheet
+	grunt.registerTask 'sprites', ['sprite']
 
 	# Clear the local changes, both from the build, and any git ignored files.
 	grunt.registerTask 'clear', ['gitclean', 'clean']
@@ -61,5 +79,5 @@ module.exports = (grunt) ->
 	grunt.registerTask 'content', ['clear', 'gitclone', 'copy', 'clean']
 
 	# By default, simply install the content.
-	grunt.registerTask 'default', ['content']
-	
+	grunt.registerTask 'default', ['content', 'sprites']
+
