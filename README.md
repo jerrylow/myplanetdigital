@@ -23,7 +23,6 @@ For an already cloned repo, or an older Git version, just do:
 cd myplanetdigital-content
 git submodule update --init --recursive
 ```
->>>>>>> develop
 
 ## Development with Dummy Content 
 	     
