@@ -19,7 +19,7 @@
 <% end %>
 
 <% if @tagName not in @document.tags: %>
-	<% visibility = @tagName + ' oh yeah' %>
+	<% visibility = '' %>
 <% else: %>
 	<% visibility = 'visible' %>
 <% end %>
