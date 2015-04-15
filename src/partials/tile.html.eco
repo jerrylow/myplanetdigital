@@ -6,6 +6,7 @@
 		<% avatar = image.url if image.basename is 'avatar' %>
 		<% cover = image.url if image.basename is 'cover' %>
 		<% tile = image.url if image.basename is 'tile' %>
+		<% homeTile = image.url if image.basename is 'home' %>
 	<% end %>
 <% end %>
 <% tile ?= avatar if avatar? %>
@@ -13,13 +14,17 @@
 <% @document.size ?= 'medium' %>
 <% @document.size = 'small' if not tile %>
 
+<% if @isHome == 'home': %>
+	<% tile = homeTile || tile %>
+<% end %>
+
 <% if @tagName not in @document.tags: %>
-	<% visibility = '' %>
+	<% visibility = @tagName + ' oh yeah' %>
 <% else: %>
 	<% visibility = 'visible' %>
 <% end %>
 
-<div class="tile <%= 'tile-' + @tileCounter %><%= if @document.size then ' ' + @document.size %><%= if @document.colour then ' ' + @document.colour %><%= ' ' + visibility %><%= ' ' + @document.tags.join(' ') if @document.tags? %>">
+<div class="tile <%= 'tile-' + (@tileCounter || 'generic') %><%= if @document.size then ' ' + @document.size %><%= if @document.colour then ' ' + @document.colour %><%= ' ' + visibility %><%= ' ' + @document.tags.join(' ') if @document.tags? %>">
 	<div class="content">
 		<% if @document.size != 'small' && @document.imagePosition != 'bottom' : %>
 			<a class="tile-image" <% if tile: %>style="background-image: url('<%= @getUrl(tile) %>')" <% end %>
@@ -29,7 +34,7 @@
 				<![endif]-->
 			</a>
 		<% end %>
-		<div class="tile-content">
+		<div class="tile-content" <%- if @document.homeBgColor then 'style="background-color:' + @document.homeBgColor + ';"'%>>
 			<% if @document.tags: %>
 				<ul class="tags">
 					<% i = 0 %>
@@ -52,12 +57,12 @@
 				<% if visibility: %>
 					<% tileTag = 'h4' %>
 				<% end %>
-				<<%=tileTag%> class="main-title"><%= @document.title %></<%=tileTag%>>
+				<<%=tileTag%> class="main-title" <%- if @document.homeColor then 'style="color:' + @document.homeColor + ';"'%>><%= @document.title %></<%=tileTag%>>
 
 				<% if @document.layout != 'person' && @document.summary?: %>
 					<% truncatelength = if @document.size is 'large' or @document.size is 'hero' or @document.size is 'featured' then 250 else 125 %>
 					<% quote = if @document.summary.length > truncatelength then @document.summary.substring(0, truncatelength) + '...' else @document.summary %>
-					<p class="description"><%- quote %></p>
+					<p class="description"><span><% if @isHome == 'home': %><strong><%= @document.title %></strong><%end%><%- quote %></span></p>
 				<% end %>
 				<% if @document.layout is 'person' and @document.summary?: %>
 					<% quote = if @document.summary.length > 70 then @document.summary.substring(0, 70) + '...' else @document.summary %>

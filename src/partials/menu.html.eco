@@ -23,8 +23,6 @@
 						<% if item.meta.banner?: %>
 							data-banner="<%= item.meta.banner %>"
 						<% end %>
-						data-menu-colour="<%= if item.meta.colour? then item.meta.colour else '#f16838' %>"
-						data-menu-doodle="<%= if item.meta.doodle? then item.meta.doodle else 'bannerdoodle.png' %>"
 						data-tag="<%= liClass %>"
 					>
 						<%= item.title or item.menuTitle %>

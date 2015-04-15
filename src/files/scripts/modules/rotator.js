@@ -26,7 +26,6 @@
 	}
 
 	function updateRotatorTimers() {
-		debugger;
 		var len = rotators.length;
 		while(len--) {
 			updateRotatorTimer(rotators[len]);

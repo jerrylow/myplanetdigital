@@ -105,11 +105,6 @@
 				overflow: hidden;
 				.transform(scale(0.93));
 				.transition-transform(0.3s, opacity 0.3s);
-				> span {
-					display: block;
-					font-weight: bold;
-					padding-bottom: 10px;
-				}
 			}
 			p.quote {
 				font-size: 2em;
@@ -436,10 +431,14 @@
 	}
 
 	@media screen and (max-width: 568px) {
-		opacity: 0.999
+		opacity: 1;
 	}
 
 	.content ul.tags {
 		pointer-events:auto;
 	}
+}
+
+a.tile-doodle.labs {
+  display: none !important;
 }

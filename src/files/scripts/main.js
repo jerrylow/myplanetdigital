@@ -52,6 +52,7 @@
         wasLinkClick,
         aborted = false,
         chromePopStateTimeout,
+        finishPageChange,
         chromePopStateScrollTop = null,
         chromeUsedBackLink,
         EXTERNAL_URL_REGEX = /^([^:\/?#]+:)?(?:\/\/([^\/?#]*))?([^?#]+)?(\?[^#]*)?(#.*)?/,
@@ -163,6 +164,7 @@
         if (isTileView) {
             if ($mainWrap.find('.tile').length === 0) {
                 isLoading = true;
+                window.currentTag = filterTag;
                 $ajaxer = $.get('/index-content-tiles/index.html', function(data) {
                     $ajaxer = null;
                     window.setTimeout(function() {
@@ -177,7 +179,7 @@
                                     filter: '.' + filterTag
                                 });
                                 $window.trigger('filter', [filterTag]);
-                                window.currentTag = filterTag;
+
                                 if (isTransitioning || isTransitionEnding) {
                                     return;
                                 }
@@ -321,6 +323,7 @@
                 transition: 'none',
                 opacity:''
             });
+
 
             window.setTimeout(function() {
                 if (overridePopstateScrollmove && IS_CHROME && !chromeUsedBackLink) {
@@ -482,6 +485,7 @@
                 window.scroll(0, 0);
                 $wrap.css('top', 0);
             }
+
             if (filterTag === 'home') {
                 showLanding();
                 $mainWrap.hide();
@@ -670,7 +674,7 @@
     window.curScrollTop = window.pageYOffset;
     window.isTileView = hasLoadedTiles = !$body.hasClass('article');
     window.isScrolling = false;
-    window.currentTag = $('#menu').find('li.active').attr('class').split(' ')[0];
+    window.currentTag = $('#menu').find('li.active').attr('class').split(' ')[0] || 'home';
 
     window.rotator($('#testimonial'), '.client-quote', 6000, true, function () {
         return window.isTileView && window.currentTag === 'home' && (window.responsiveState !== 'mobile' || !window.mobileMenuIsOpen);
@@ -741,6 +745,9 @@
                 PORTFOLIO_SCROLLTO_OFFSET = window.responsiveState === 'mobile' ? $('.menu-ghost').height() : 137;
                 $window.trigger('scroll-to', [window.mobileMenuYOffset = ($portfolio.offset().top - PORTFOLIO_SCROLLTO_OFFSET - window.curScrollTop)]);
             }*/ else if (e.currentTarget.getAttribute('data-attr') === 'back' && (hasLoadedTiles || doTileAjax || doArticleAjax)) {
+                if(window.isIOS) {
+                    return true;
+                }
                 if(isTileView || window.mobileMenuIsOpen) {
                     return false;
                 }
@@ -765,11 +772,17 @@
                     linkClickedTime = new Date();
                 }
                 if (url.match(ARTICLE_REGEX)) {
+                    if(window.isTileView && window.isIOS) {
+                        return true;
+                    }
                     pageTitle = $('a[href="' + url + '"].tile-title .main-title').text() + ' | Myplanet Digital';
                     if(($link = $(this)).hasClass('tile-title')) {
                         $link.closest('.content').addClass('active-tile');
                     }
                 } else if (url.match(TAG_REGEX)) {
+                    if(!window.isTileView && window.isIOS) {
+                        return true;
+                    }
                     // Add an active class to the menu earlier.
                     $link = $(this);
                     linkTag = $link.attr('data-tag');
