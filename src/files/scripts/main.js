@@ -324,7 +324,6 @@
                 opacity:''
             });
 
-
             window.setTimeout(function() {
                 if (overridePopstateScrollmove && IS_CHROME && !chromeUsedBackLink) {
                     window.scroll(0, window.curScrollTop = articleScrollTop);
