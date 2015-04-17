@@ -4,7 +4,7 @@
 
 <%- @partial('tile', true, {'document': {title:'Per-scope promise proxy for Angular', tags: ['labs'], summary: 'angular-pxy extends scope objects with a $pxy() method that proxies promises through a Pxy instance that is automatically invalidated when the scope is destroyed', externalUrl:'https://myplanet.github.io/angular-pxy'}, 'tagName': @document.meta.tagName}) %>
 
-<%- @partial('tile', true, {'document': {title:'Child-aware blur handler for Angular', tags: ['labs'], summary: 'angular-deep-blur detects when an element has lost focus and none of its children is the recipient of focus', externalUrl:'https://myplanet.github.io/angular-deep-blur'}, 'tagName': @document.meta.tagName}) %>
+<%- @partial('tile', true, {'document': {title:'Child-aware blur handler for Angular', tags: ['labs'], summary: 'angular-deep-blur detects when neither the element nor any of its children are in focus (i.e. the element is blurred by the focusing of another element outside the element.)', externalUrl:'https://myplanet.github.io/angular-deep-blur'}, 'tagName': @document.meta.tagName}) %>
 
 <%- @partial('tile', true, {'document': {title:'Bullet-proof auto-focusing for Angular', tags: ['labs'], summary: "The HTML autofocus attribute doesn't consistently work across different browsers when an element is inserted into the DOM after the initial page load. angular-auto-focus introduces the auto-focus attribute that works consistently", externalUrl:'https://myplanet.github.io/angular-auto-focus'}, 'tagName': @document.meta.tagName}) %>
 
