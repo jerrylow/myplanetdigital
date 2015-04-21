@@ -27,7 +27,6 @@
             <h2>Select Clients</h2>
             <ul class="clients-list">
                 <li><img src="/images/clients/centurylink-bw.png" width="145" style="margin-top: -15px;" alt="CenturyLink"></li>
-                <li><img src="/images/clients/esri-bw.png" width="145" style="margin-top: -16px;" alt="Esri Canada"></li>
                 <li><img src="/images/clients/telx-bw.png" width="140" style="margin-top: -15px;" alt="TelX"></li>
                 <li><img src="/images/clients/lassonde-bw.png" width="65px" style="margin-top: -32px;" alt="Lassonde"></li>
                 <li><img src="/images/clients/rcm-bw.png" width="115px" style="margin-top: -30px;" alt="The Royal Conservatory"></li>
@@ -57,10 +56,6 @@
         <div class="client-quote">
             <p>The entire team at Telx was really impressed with the workshop Myplanet delivered and facilitated. It’s also impressive when you are working with a vendor that immediately gets our technologies and can gain the trust of our participants. You made me look good, and for that I am grateful.</p>
             <div class="client-title">Andrew Baird, <strong>Director of Product Management, Telx</strong></div>
-        </div>
-        <div class="client-quote">
-            <p>The expert skills that the Myplanet team brought to the project resulted in the development of a more robust site, and delivered much faster than we could have achieved in-house. I also appreciate the ongoing relationship with the team who provide both support and insight into new technology and trends that we might want to adopt.</p>
-            <div class="client-title">Colleen Raymond, <strong>Manager of Web & Database Marketing, Esri Canada</strong></div>
         </div>
     </section>
     <section id="learn-more">
