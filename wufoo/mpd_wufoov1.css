@@ -1,0 +1,158 @@
+/* - - - - - - - - - - - - - - - - - - - - -
+
+ Title : Myplanet Digital
+ Author : Myplanet Digital
+ URL : http://wufoo.com
+
+ Last Updated : April 4, 2013
+
+- - - - - - - - - - - - - - - - - - - - - */
+
+/* - - - Default - - - */
+
+/* Logo */
+#logo {
+	margin-top: 35px;
+	background: none;
+	margin-left: 23px;
+
+}
+#logo a {
+	background:url('https://dl.dropboxusercontent.com/u/12648478/MPD_Logo_Wufoo_sm.png') no-repeat;
+	height:150px;
+	text-indent: -9999px;
+	background-repeat: no-repeat;
+	background-position: 0px;
+}
+
+#logo a.img {
+	max-width: 100%;
+	height: auto;}
+
+* html #logo a {/* IE6 png Support */
+	background-image: none;
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="http://myplanetdigital.com/sites/default/files/logo.png", sizingMethod="crop");
+}
+
+/* Backgrounds */
+html { background: #f1f1f1; }
+body {
+	background: #f1f1f1 url('http://myplanetdigital.com/sites/all/themes/myplanet/images/webform-bottom.png') no-repeat fixed left bottom;
+	margin: 0;
+	padding: 25px;
+}
+#container {
+	background:#FFFFFF;
+	width: 680px;
+	margin: 0 auto;
+	padding: 0 20px;
+	border: 5px solid rgba(0,0,0,0.1);
+}
+.wufoo input.text, .wufoo textarea.textarea{background:#FFFFFF url(/images/fieldbg.gif) repeat-x top}
+.wufoo .focused{background:#FFF7C0;}
+.wufoo .instruct{background-color:#F5F5F5}
+
+/* Borders */
+.wufoo .info{border-bottom:1px dotted #CCCCCC}
+.wufoo .instruct{border:1px solid #e6e6e6}
+
+/* Typography */
+@font-face{font-family:'plantin';src:url(http://myplanetdigital.com/sites/all/themes/myplanet/fonts/plantinstd-webfont.eot);src:url(http://myplanetdigital.com/sites/all/themes/myplanet/fonts/plantinstd-webfont.eot?#iefix) format('embedded-opentype'),url(http://myplanetdigital.com/sites/all/themes/myplanet/fonts/plantinstd-webfont.woff) format('woff'),url(http://myplanetdigital.com/sites/all/themes/myplanet/fonts/plantinstd-webfont.ttf) format('truetype'),url(http://myplanetdigital.com/sites/all/themes/myplanet/fonts/plantinstd-webfont.svg#PlantinStdRegular) format('svg');font-weight:normal;font-style:normal;}@font-face{font-family:'plantin';src:url(http://myplanetdigital.com/sites/all/themes/myplanet/fonts/plantinstd-bold-webfont.eot);src:url(http://myplanetdigital.com/sites/all/themes/myplanet/fonts/plantinstd-bold-webfont.eot?#iefix) format('embedded-opentype'),url(http://myplanetdigital.com/sites/all/themes/myplanet/fonts/plantinstd-bold-webfont.woff) format('woff'),url(http://myplanetdigital.com/sites/all/themes/myplanet/fonts/plantinstd-bold-webfont.ttf) format('truetype'),url(http://myplanetdigital.com/sites/all/themes/myplanet/fonts/plantinstd-bold-webfont.svg#PlantinStdBold) format('svg');font-weight:bold;font-style:normal;}@font-face{font-family:'plantin';src:url(http://myplanetdigital.com/sites/all/themes/myplanet/fonts/plantinstd-bolditalic-webfont.eot);src:url(http://myplanetdigital.com/sites/all/themes/myplanet/fonts/plantinstd-bolditalic-webfont.eot?#iefix) format('embedded-opentype'),url(http://myplanetdigital.com/sites/all/themes/myplanet/fonts/plantinstd-bolditalic-webfont.woff) format('woff'),url(http://myplanetdigital.com/sites/all/themes/myplanet/fonts/plantinstd-bolditalic-webfont.ttf) format('truetype'),url(http://myplanetdigital.com/sites/all/themes/myplanet/fonts/plantinstd-bolditalic-webfont.svg#PlantinStdBoldItalic) format('svg');font-weight:bold;font-style:italic;}
+@font-face{font-family:'tradegothic';src:url(http://myplanetdigital.com/sites/all/themes/myplanet/fonts/tradegothicltstd-webfont.eot);src:url(http://myplanetdigital.com/sites/all/themes/myplanet/fonts/tradegothicltstd-webfont.eot?#iefix) format('embedded-opentype'),url(http://myplanetdigital.com/sites/all/themes/myplanet/fonts/tradegothicltstd-webfont.woff) format('woff'),url(http://myplanetdigital.com/sites/all/themes/myplanet/fonts/tradegothicltstd-webfont.ttf) format('truetype'),url(http://myplanetdigital.com/sites/all/themes/myplanet/fonts/tradegothicltstd-webfont.svg#TradeGothicLTStdRegular) format('svg');font-weight:normal;font-style:normal;}
+@font-face{font-family:'tradegothic';src:url(http://myplanetdigital.com/sites/all/themes/myplanet/fonts/tradegothicltstd-bd2-webfont.eot);src:url(http://myplanetdigital.com/sites/all/themes/myplanet/fonts/tradegothicltstd-bd2-webfont.eot?#iefix) format('embedded-opentype'),url(http://myplanetdigital.com/sites/all/themes/myplanet/fonts/tradegothicltstd-bd2-webfont.woff) format('woff'),url(http://myplanetdigital.com/sites/all/themes/myplanet/fonts/tradegothicltstd-bd2-webfont.ttf) format('truetype'),url(http://myplanetdigital.com/sites/all/themes/myplanet/fonts/tradegothicltstd-bd2-webfont.svg#TradeGothicLTStdBoldNo.2) format('svg');font-weight:bold;font-style:normal;}
+
+body {
+	font-family: 'plantin', Georgia, serif;
+	font-size: 14.5px;
+}
+.wufoo .info h2{
+	font: bold 350% 'tradegothic', sans-serif;
+	color: #000;
+	margin-bottom: 0.5em;
+	letter-spacing: -0.08em;
+	padding-top: 15px;
+	display: block;
+	width: 410px;
+	line-height: 90%;
+}
+.wufoo .info div, .wufoo .section div, form li.section div {
+	font-size: 100%;
+	font-family: 'plantin', Georgia, serif;
+	color:#444444;
+}
+.wufoo .section h3 {
+	color: #ed5b33;
+	font: bold 190% 'tradegothic', Georgia, serif;
+	margin-top: 20px;
+	letter-spacing: -0.08em;
+}
+
+.wufoo label.desc, .wufoo legend.desc{font-size:95%;font-family:inherit;color:#444444}
+.wufoo li div, .wufoo li div label, .wufoo li span label{font-family:inherit;color:#444444}
+.wufoo input.text, .wufoo textarea.textarea, .wufoo select.select, .wufoo label.choice{font-size:100%;font-family:inherit;color:#333333}
+.wufoo label.choice{color:#444444}
+.wufoo .instruct{font-size:90%;font-family:inherit;color:#444444
+}
+
+/* Drop Shadows */
+#bottom{visibility:hidden;}
+
+/* Form */
+input.btTxt {
+	font-family: 'plantin', Georgia, serif;
+	background: url("https://dl.dropboxusercontent.com/u/12648478/MPD_Button_Wufoo2.png") no-repeat scroll 0 0 transparent;
+    border: 0 none;
+    color: #FFFFFF;
+    cursor: pointer;
+    font-weight: bold;
+    height: 88px;
+    text-indent: 0px;
+    width: 88px;
+}
+input.btTxt:hover {
+	background-position: -87px;
+}
+label.desc {
+	font-family: 'plantin', Georgia, serif;
+}
+.wufoo {
+	font-family: 'plantin', Georgia, serif;}
+
+.wufoo input.text {
+	height: 18px;
+	}
+
+.wufoo input.text, .wufoo textarea.textarea {
+    padding: 5px 10px;
+    -webkit-transition: all 400ms ;
+	-moz-transition: all 400ms ;
+	-ms-transition: all 400ms ;
+	-o-transition: all 400ms ;
+	transition: all 400ms ;
+	background: #fafafa;
+	-webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.wufoo input.text:focus, .wufoo textarea.textarea:focus {
+	outline: none;
+	-webkit-box-shadow:  0px 0px 5px 0px rgba(0, 0, 0, 0.3);
+	box-shadow:  0px 0px 5px 0px rgba(0, 0, 0, 0.3);
+	border: 1px solid #ed5b33;
+	background: #fff;
+}
+.likert thead td {
+	text-align: left;
+	font-size: 75%;
+}
+a {
+	color: #ed5b33;
+	text-decoration: none;
+}
+a:hover {
+	color: #000;
+}
+form .instruct {
+	margin-top: 28px;
+}
+
